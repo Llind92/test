@@ -1,0 +1,147 @@
+<section class="contactSection">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="collectionHeader">
+          <div class="collectionHeader__title">
+            <h1>{{ 'customer.register.title' | t }}</h1>
+            <div class="rte">
+              <p>Llena los campos para crear tu cuenta en <strong>ISI Cosmetics</strong></p>
+            </div>
+          </div><!-- end.TitleDescription -->
+        </div><!-- end.collectionHeader -->
+      </div><!-- end.column -->
+    </div><!--  end.columns -->
+    <div class="columns is-centered">
+      <div class="column is-full-fifths-tablet is-half-desktop">
+        <div class="contformulario">
+      {%- assign formId = 'RegisterForm' -%}
+      {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
+        {% include 'form-status', form: form, form_id: formId %}
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <div class="control is-expanded">
+                  <div class="animatedField">
+                    <input type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name" required>
+                    <label for="{{ formId }}-FirstName">Nombre*</label>
+                  </div>
+                </div>
+              </div><!-- end.nameInput -->
+              <div class="field">
+                <div class="control is-expanded">
+                  <div class="animatedField">
+                    <input type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name" required>
+                    <label for="{{ formId }}-LastName">Apellido*</label>
+                  </div>
+                </div><!-- end.lastNameInput -->
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field is-expanded">
+                <div class="animatedField">
+                  <input
+                    type="email"
+                    name="customer[email]"
+                    id="{{ formId }}-email"
+                    class="{% if form.errors contains 'email' %} input--error{% endif %}"
+                    {% if form.email %} value="{{ form.email }}"{% endif %}
+                    autocorrect="off"
+                    autocapitalize="off"
+                    autocomplete="email"
+                    aria-required="true"
+                    {%- if form.errors contains 'email' -%}
+                      class="input--error"
+                      aria-invalid="true"
+                      aria-describedby="{{ formId }}-email-error"
+                    {%- endif -%}
+                    required
+                  >
+                  <label for="{{ formId }}-email">Correo electrónico*</label>
+                </div>
+                {%- if form.errors contains 'email' -%}
+                  <span id="{{ formId }}-email-error" class="input-error-message">
+                    <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                    {% include 'icon-error' %}
+                    <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                  </span>
+                {%- endif -%}
+              </div>
+            </div>
+          </div><!-- end.emailInput -->
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field is-expanded">
+                <div class="control">
+                  <div class="fieldsLogin">
+                    <div id="accept" class="FieldCheckForms">
+                      <input type="hidden" name="customer[accepts_marketing]" value="false" />
+                      <input type="checkbox" class="CheckStyle" name="customer[accepts_marketing]" id="accepts_marketing" class="{% if form.errors contains 'email' %} error{% endif %}" value="true" checked />
+                      <label for="accepts_marketing" class="login">¡Suscríbete para mantenerte actualizado con nuevos productos y ofertas!</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- end.chebox -->
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field is-expanded">
+                <div class="animatedField">
+                  <input
+                    type="password"
+                    name="customer[password]"
+                    id="{{ formId }}-password"
+                    class="{% if form.errors contains 'password' %} input--error{% endif %}"
+                    aria-required="true"
+                    {%- if form.errors contains 'password' -%}
+                      class="input--error"
+                      aria-invalid="true"
+                      aria-describedby="{{ formId }}-password-error"
+                    {%- endif -%}
+                    required
+                  >
+                  <label for="{{ formId }}-password">Contraseña*</label>
+                </div>
+                {%- if form.errors contains 'password' -%}
+                  <span id="{{ formId}}-password-error" class="input-error-message">
+                    {% include 'icon-error' %}
+                    <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
+                  </span>
+                {%- endif -%}
+              </div>
+            </div>
+          </div><!-- end.passwordInput -->
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <div class="fieldsLogin text-center">
+                    <div class="FieldCheckForms text-center">
+                      <input type="checkbox" class="CheckStyle" name="customer[acepto]" id="CustomerAcepto" aria-required="true" value="1" required>
+                      <label for="CustomerAcepto">He leído y acepto el <a href="/pages/aviso-de-privacidad" target="_blank">Aviso de Privacidad</a>.</label>
+                    </div> 
+                    {%- if form.errors contains 'acepto' -%}
+                      <span id="{{ formId }}-acepto-error" class="input-error-message">
+                        <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                        {% include 'icon-error' %}
+                        <span>{{ form.errors.translated_fields['acepto'] | capitalize }} {{ form.errors.messages['acepto'] }}.</span>
+                      </span>
+                    {%- endif -%}
+                    <button type="submit" value="{{ 'customer.register.submit' | t }}" class="btnpr btnpr__primary btnpr__primary--border"><span>{{ 'customer.register.submit' | t }}</span><i class="lni lni-chevron-right"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- end.fieldsLogin -->
+      {% endform %}
+        </div><!-- end.contactSec -->
+      </div><!-- end.column -->
+    </div><!--  end.columns -->
+  </div><!-- end.container -->
+</section>

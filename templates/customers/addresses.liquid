@@ -1,0 +1,331 @@
+{% paginate customer.addresses by 5 %}
+
+<section class="contactSection">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="collectionHeader">
+          <div class="collectionHeader__title">
+            <h1>{{ 'customer.addresses.title' | t }}</h1>
+            <div class="rte">
+              <p><a href="{{ routes.account_url }}">{{ 'customer.account.return' | t }}</a></p>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btnpr btnpr__primary btnpr__primary--border address-new-toggle" id="AddressNewButton" aria-expanded="false" aria-owns="AddressNewForm"><span>{{ 'customer.addresses.add_new' | t }}</span><i class="lni lni-pin"></i></button>
+            </div>
+          </div><!-- end.TitleDescription -->
+        </div><!-- end.collectionHeader -->
+      </div><!-- end.column -->
+    </div><!--  end.columns -->
+  </div><!-- end.container -->
+  <div id="AddressNewForm" class="contAccount hide">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-full is-three-fifths-tablet is-half-desktop">
+          <div class="contformulario">
+        {% form 'customer_address', customer.new_address %}
+            
+            <div class="field is-horizontal">
+
+              <div class="field-body">
+                <div class="field">
+                  <div class="control is-expanded">
+                    <div class="animatedField">   
+                      <input type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name" required>
+                      <label for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control is-expanded">
+                    <div class="animatedField">
+                      <input type="text" id="AddressLastNameNew" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name" required>
+                      <label for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field is-expanded">
+                  <div class="animatedField">
+                    <input type="text" id="AddressCompanyNew" name="address[company]" value="{{ form.company }}" autocomplete="organization" required>
+                    <label for="AddressCompanyNew">{{ 'customer.addresses.company' | t }}</label>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end.Addrescompany -->
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field is-expanded">
+                  <div class="animatedField">
+                    <input type="text" id="AddressAddress1New" name="address[address1]" value="{{ form.address1 }}" autocomplete="street-address address-line1" required>
+                    <label for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end.passwordInput -->
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field is-expanded">
+                  <div class="animatedField">
+                    <input type="text" id="AddressAddress2New" name="address[address2]" value="{{ form.address2 }}" autocomplete="street-address address-line2" required>
+                    <label for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end.passwordInput -->
+            <div class="field is-horizontal">
+
+              <div class="field-body">
+                <div class="field">
+                  <div class="control is-expanded">
+                    <div class="animatedField">
+                      <input type="text" id="AddressCityNew" name="address[city]" value="{{ form.city }}" autocomplete="address-level2"required>
+                      <label for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control is-expanded">
+                    <div class="select-group addressSel">
+                      <select id="AddressCountryNew" name="address[country]" data-default="{{ form.country }}" autocomplete="country">{{ all_country_option_tags }}</select>
+                      {% include 'icon-chevron-down' %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div id="AddressProvinceContainerNew" class="field is-horizontal" style="display: none;">
+              <div class="field-body">
+                <div class="field is-expanded">
+                  <div class="select-group addressSel">
+                    <select id="AddressProvinceNew" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+                    {% include 'icon-chevron-down' %}
+                  </div>
+                </div>
+              </div>
+            </div><!-- end.passwordInput -->
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field is-expanded">
+                  <div class="animatedField">
+                    <input type="text" id="AddressZipNew" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" autocomplete="postal-code" required>
+                    <label for="AddressZipNew">{{ 'customer.addresses.zip' | t }}</label>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end.passwordInput -->
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field is-expanded">
+                  <div class="animatedField">
+                    <input type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}" autocomplete="phone" required>
+                    <label for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end.passwordInput -->
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                      <div class="fieldCheck text-center">
+                        <input type="checkbox" id="address_default_address_new" class="CheckStyle" name="address[default]" value="1">
+                        <label for="address_default_address_new">{{ 'customer.addresses.set_default' | t }}</label>
+                      </div>
+                      <div class="buttonsForms">
+                        <button type="submit" value="{{ 'customer.addresses.add' | t }}" class="btnpr btnpr__primary btnpr__primary--border"><span>{{ 'customer.addresses.add' | t }}</span><i class="lni lni-chevron-right"></i></button>
+                        <button type="button" value="{{ 'customer.addresses.cancel' | t }}" class="btnpr btnpr__primary btnpr__primary--outline address-new-toggle"><span>{{ 'customer.addresses.cancel' | t }}</span><i class="lni lni-close"></i></button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end.fieldsLogin -->
+        {% endform %}
+          </div><!-- end.contactSec -->
+        </div><!-- end.column -->
+      </div><!--  end.columns -->
+    </div><!-- end.container -->
+  </div><!-- end.contAccount -->
+  <div class="editAddresCont">
+    <div class="container">
+      <div class="columns is-centered">
+      {% for address in customer.addresses %}
+        <div class="column is-full is-half-tablet">
+          <div class="boxFormAdressEdit">
+          {% if address == customer.default_address %}
+            <h2>{{ 'customer.addresses.default' | t }}</h2>
+          {% endif %}
+            <div class="descAddress">
+              {{ address | format_address }}
+            </div>
+            <div class="buttonsEditAdd">
+              <button
+                id="EditFormButton_{{ address.id }}"
+                type="button"
+                class="btnpr btnpr__primary btnpr__primary--borderBlack address-edit-toggle"
+                data-form-id="{{ address.id }}"
+                aria-owns="EditAddress_{{ address.id }}"
+                aria-expanded="false"
+              >
+                  {{ 'customer.addresses.edit' | t }}
+              </button>
+              <button
+                type="button"
+                class="btnpr btnpr__primary btnpr__primary--outline address-delete"
+                data-target="{{ address.url }}"
+                data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}"
+              >
+              {{ 'customer.addresses.delete' | t }}
+              </button>
+            </div><!-- end.buttonsEditAdd -->
+          </div><!-- end.boxFormAdressEdit -->
+          <div id="EditAddress_{{ address.id }}" class="formEditAdress hide">
+            {% form 'customer_address', address %}
+              <h3>{{ 'customer.addresses.edit_address' | t }}</h3>
+              <div class="columns">
+                <div class="column is-full">
+                  <div class="field is-horizontal">
+
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control is-expanded">
+                          <div class="animatedField">   
+                            <input type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name" required>
+                            <label for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <div class="control is-expanded">
+                          <div class="animatedField">
+                            <input type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name" required>
+                            <label for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+      
+                  </div>
+                  <div class="field is-horizontal">
+                    <div class="field-body">
+                      <div class="field is-expanded">
+                        <div class="animatedField">
+                          <input type="text" id="AddressCompany_{{ form.id }}" name="address[company]" value="{{ form.company }}" autocomplete="organization" required>
+                          <label for="AddressCompany_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- end.Addrescompany -->
+                  <div class="field is-horizontal">
+                    <div class="field-body">
+                      <div class="field is-expanded">
+                        <div class="animatedField">
+                          <input type="text" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}" autocomplete="street-address address-line1" required>
+                          <label for="AddressAddress1_{{ form.id }}">{{ 'customer.addresses.address1' | t }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- end.passwordInput -->
+                  <div class="field is-horizontal">
+                    <div class="field-body">
+                      <div class="field is-expanded">
+                        <div class="animatedField">
+                          <input type="text" id="AddressAddress2_{{ form.id }}" name="address[address2]" value="{{ form.address2 }}" autocomplete="street-address address-line2" required>
+                          <label for="AddressAddress2_{{ form.id }}">{{ 'customer.addresses.address2' | t }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- end.passwordInput -->
+                  <div class="field is-horizontal">
+      
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control is-expanded">
+                          <div class="animatedField">
+                            <input type="text" id="AddressCity_{{ form.id }}" name="address[city]" value="{{ form.city }}" autocomplete="address-level2" required>
+                            <label for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <div class="control is-expanded">
+                          <div class="select-group addressSel">
+                            <select id="AddressCountry_{{ form.id }}" class="address-country-option" data-form-id="{{ form.id }}" name="address[country]" data-default="{{ form.country }}" autocomplete="country">{{ all_country_option_tags }}</select>
+                            {% include 'icon-chevron-down' %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+      
+                  </div>
+                  <div id="AddressProvinceContainer_{{ form.id }}" class="field is-horizontal" style="display: none;">
+                    <div class="field-body">
+                      <div class="field is-expanded">
+                        <div class="select-group addressSel">
+                          <select id="AddressProvince_{{ form.id }}" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+                          {% include 'icon-chevron-down' %}
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- end.passwordInput -->
+                  <div class="field is-horizontal">
+                    <div class="field-body">
+                      <div class="field is-expanded">
+                        <div class="animatedField">
+                          <input type="text" id="AddressZip_{{ form.id }}" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" autocomplete="postal-code" required>
+                          <label for="AddressZip_{{ form.id }}">{{ 'customer.addresses.zip' | t }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- end.passwordInput -->
+                  <div class="field is-horizontal">
+                    <div class="field-body">
+                      <div class="field is-expanded">
+                        <div class="animatedField">
+                          <input type="tel" id="AddressPhone_{{ form.id }}" name="address[phone]" value="{{ form.phone }}" autocomplete="phone" required>
+                          <label for="AddressPhone_{{ form.id }}">{{ 'customer.addresses.phone' | t }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- end.passwordInput -->
+                  <div class="field is-horizontal">
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control">
+                            <div class="fieldCheck text-center">
+                              <input type="checkbox" class="CheckStyle" name="address[default]" id="address_default_address_{{ form.id }}" value="1">
+                              <label for="address_default_address_{{ form.id }}">{{ 'customer.addresses.set_default' | t }}</label>
+                            </div>
+                            <div class="buttonsForms">
+                              <button type="submit" value="{{ 'customer.addresses.update' | t }}" class="btnpr btnpr__primary btnpr__primary--borderBlack">{{ 'customer.addresses.update' | t }}</button>
+                              <button type="button" value="{{ 'customer.addresses.cancel' | t }}" class="btnpr btnpr__primary btnpr__primary--outline address-edit-toggle" data-form-id="{{ form.id }}">{{ 'customer.addresses.cancel' | t }}</button>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- end.fieldsLogin -->
+                  <hr>
+                </div>
+              </div>
+            {% endform %}
+          </div><!-- end.formEditAdress -->
+        </div><!-- end.adressEdit -->
+      {% endfor %}
+      </div>
+      {%- if paginate.pages > 1 -%}
+      <div class="columns">
+        <div class="column is-full">
+          {% include 'pagination', paginate: paginate %}
+        </div>
+      </div>
+      {%- endif -%}
+    </div><!-- end.container -->
+  </div><!-- end.contAccount -->
+</section><!-- end.SectionAccount -->
+
+{% endpaginate %}

@@ -1,0 +1,113 @@
+<section class="contactSection">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="collectionHeader">
+          <div class="collectionHeader__title">
+            <h1>{{ 'customer.account.title' | t }}</h1>
+          </div><!-- end.TitleDescription -->
+        </div><!-- end.collectionHeader -->
+      </div><!-- end.column -->
+    </div><!--  end.columns -->
+  </div><!-- end.container -->
+  <div class="contAccount">
+    <div class="container">
+    {% if customer %}
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div class="boxUser">
+            <div class="textUserCont">
+              <h2>Hola, {{ customer.first_name }}.</h2>
+              <p>
+                ¡Has iniciado sesión en <strong>ISI Cosmetics</strong>!<br>
+                <span>Tu correo electrónico es: <strong>{{ customer.email }}</strong>.</span>
+              </p>
+            </div>
+            <a id="customer_logout_link" href="/account/logout" class="btnpr btnpr__primary btnpr__primary--borderBlack"><span>{{ 'layout.customer.log_out' | t }}</span><i class="lni lni-exit"></i></a>
+          </div><!--  -->
+        </div><!-- end.column -->
+      </div><!-- end.columns -->
+    {% endif %}
+      <div class="columns">
+        <div class="column">
+          <div class="itemsListAccount">
+            <div class="tabs is-centered">
+              <ul>
+                <li id="order-tab" class="is-active" data-tab-account>
+                  <a>
+                    <span class="icon is-small"><i class="lni lni-folder"></i></span>
+                    <span>Pedidos</span>
+                  </a>
+                </li>
+                <li id="address-tab" data-tab-account>
+                  <a>
+                    <span class="icon is-small"><i class="lni lni-direction"></i></span>
+                    <span>Direcciones</span>
+                  </a>
+                </li>
+              </ul><!-- end.listItems -->
+            </div><!-- end.tabs -->
+          </div><!-- end.itemsListAccount -->
+        </div><!-- end.columnTabs -->
+      </div><!-- end.columnsTabs -->
+
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="ContTab" id="order-tab-content">
+            <div class="boxMyAccount">
+              <h2>{{ 'customer.orders.title' | t }}</h2>
+              {% paginate customer.orders by 20 %}
+                {% if customer.orders.size != 0 %}
+  
+                  <table class="table is-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ 'customer.orders.order_number' | t }}</th>
+                        <th scope="col">{{ 'customer.orders.date' | t }}</th>
+                        <th scope="col">{{ 'customer.orders.payment_status' | t }}</th>
+                        <th scope="col">{{ 'customer.orders.fulfillment_status' | t }}</th>
+                        <th scope="col">{{ 'customer.orders.total' | t }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for order in customer.orders %}
+                        <tr>
+                          <th data-label="{{ 'customer.orders.order_number' | t }}" scope="row">
+                            <a href="{{ order.customer_url }}" class="btn btn--secondary btn--small" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">{{ order.name }}</a>
+                          </th>
+                          <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | time_tag: format: 'date' }}</td>
+                          <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                          <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                          <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+  
+                {% else %}
+  
+                  <p>{{ 'customer.orders.none' | t }}</p>
+  
+                {% endif %}
+                {%- if paginate.pages > 1 -%}
+                  <div class="columns">
+                    <div class="column is-full">
+                      {% include 'pagination', paginate: paginate %}
+                    </div>
+                  </div>
+                {%- endif -%}
+              {% endpaginate %}
+            </div>
+          </div><!-- end.orders -->
+          <div class="ContTab HideT" id="address-tab-content">
+            <div class="boxAccountDetails">
+              <h2>{{ 'customer.account.details' | t }}</h2>
+              {{ customer.default_address | format_address }}
+              <a href="{{ routes.account_addresses_url }}" class="btnpr btnpr__primary btnpr__primary--border"><span>{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</span><i class="lni lni-chevron-right"></i></a>
+            </div>
+          </div><!-- end.addressCont -->
+        </div><!-- end.columnContentTabs -->
+      </div><!--  end.columns -->
+    </div>
+  </div>
+</section><!-- end.SectionAccount -->

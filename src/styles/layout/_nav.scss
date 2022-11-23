@@ -1,0 +1,162 @@
+/* ==|====================
+   Layout/Nav
+   ======================= */
+
+.menuMain {
+  width: 100%; height: auto; padding: 0; margin: 0;
+  nav {
+    width: 100%; height: auto; padding: 0; margin: 0 0 0 0; display: none; @include box-sizing(border-box); border-top: 1px solid $c2; border-bottom: 1px solid $c2;
+    ul {
+      width: 100%; height: auto; padding: 0; margin: 0 0 0 0; list-style-type: none; @include displayFlex(flex, row, center, center, wrap);
+      li {
+        list-style-type: none; padding: 0 15px 0; margin: 0; position: relative;
+        a,
+        .btnMenuSub {
+          color: $c3; margin: 0 0 0 0; padding: 0; text-transform: uppercase; font-size: rem(14px); display: block; width: auto; height: 48px; line-height: 48px; font-family: $monbold; color: $c5;
+          &:hover {
+            color: $c3;
+          }
+        }
+        .btnMenuSub {
+          background-color: $white!important; border: none!important; border-radius: 0!important; outline: 0!important;
+          & .icon {
+            width: 10px; height: 10px; margin-left: 10px;
+          }
+        }
+        &:before, &:after {
+          content: ''; background-color: $c5; width: 0; height: 1px; @include position(absolute, null null null null); @include transition(all 300ms ease);
+        }
+        &:before {
+          left: 0; top: -1px;
+        }
+        &:after {
+          right: 0; bottom: -1px;
+        }
+        &:hover {
+          &:before, &:after {
+            width: 100%;
+          }
+        }
+        &.activoLink {
+          a,
+          .btnMenuSub {
+            color: $c3;
+          }
+          &:before, &:after {
+            width: 100%;
+          }
+        }
+        &.itemSubMenu {
+          position: relative;
+          &:hover {
+            & .site-nav__dropdown {
+              display: block; opacity: 1; visibility: visible; @include transform(translate(-50%, 0));
+            }
+          }
+          & .site-nav__dropdown {
+            background: $white!important; border: none!important; display: inherit!important; height: auto; left: 50%!important; margin: 0; padding: 0!important; position: absolute; top: 100%; @include transform(translate(-50%, 30%)); @include transition(transform .3s ease, background .25s ease .45s, visibility 0s); visibility: hidden; width: 220px; z-index: 99;
+            & ul {
+              & li {
+                &:before, &:after {
+                  display: none!important;
+                }
+                & a {
+                  padding: 10px 15px!important; height: auto!important; line-height: inherit!important; text-decoration: none!important;
+                  & span {
+                    border: none!important;
+                  }
+                  &:hover {
+                    text-decoration: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media all and (min-width: 992px) {
+    nav {
+      display: block;
+    }
+  }
+}
+
+// Menu Mobile
+.cont-menu-mobile {
+  @extend .overlayClass; background-color: $white; z-index: -1; overflow-y: auto;
+  .mnuContMob {
+    width: 100%; height: auto; padding: 0; margin: 130px 0 0 0;
+    ul {
+      list-style-type: none; @include displayFlex(flex, column, center, center, nowrap); margin: 10px auto; padding: 0 0; width: 300px;
+      li {
+        list-style-type: none; width: 100%; height: auto; border-bottom: 1px solid $c4;
+        a {
+          display: block; color: $c5; text-transform: uppercase; width: 100%; height: 40px; line-height: 40px; background-color: rgba(255,255,255,0.0); text-align: left; @include transition(all 0.25s ease); font-family: $monsemi; font-size: rem(14px);
+          &:hover, &:active {
+            background-color: rgba(255,255,255,0.10);
+          }
+        }
+        &.itemSubMenu {
+          & button {
+            display: block; color: $c5!important; text-transform: uppercase; width: 100%; height: 40px; line-height: 40px; background-color: rgba(255,255,255,0.0); text-align: left; @include transition(all 0.25s ease); font-family: $monsemi; font-size: rem(14px); border: none!important; border-radius: 0!important; padding: 0!important; outline: 0!important;
+            span {
+              opacity: 1.0!important; border: none!important;
+            }
+            & .icon {
+              width: 15px; height: 10px; margin-left: 10px;
+            }
+            &:hover, &:active {
+              background-color: rgba(255,255,255,0.10);
+            }
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .socHead {
+    width: 100%; height: auto; padding: 0; margin: 20px 0 10px 0; text-align: center;
+    ul {
+      padding: 0; margin: 0; list-style-type: none; @include displayFlex(flex, row, center, center, wrap);
+      li {
+        list-style-type: none; padding: 0; margin: 0 8px 0 0;
+        a {
+          display: block; width: 35px; height: 35px; font-size: rem(18px); @include transition(all 0.23s ease); background-color: $col6; @include border-top-radius(50%); @include border-bottom-radius(50%); line-height: 35px; text-align: center; position: relative; overflow: hidden;
+          &:before, &:after {
+            font-family: 'LineIcons'; @include position(absolute, 0 null null 0); width: 100%; height: 100%; color: $col1; @include transition(transform 300ms ease-in-out, all 0.25s);
+          }
+          &:before { @include transform(translateY(-100%)); }
+          &:after { @include transform(translateY(0)); }
+          //Clases
+          &.tyi-whatsapp { &:before, &:after { content: '\ebf1'; } }
+          &.tyi-facebook { &:before, &:after { content: '\eab6'; } }
+          &.tyi-twitter { &:before, &:after { content: '\ebd8'; } }
+          &.tyi-instagram { &:before, &:after { content: '\eaf3'; } }
+          &.tyi-youtube { &:before, &:after { content: '\ebfd'; } }
+          //Fin-Clases
+          &:hover, &:active {
+            background-color: $col4;
+            &:before { @include transform(translateY(0)); }
+            &:after { @include transform(translateY(100%)); }
+          }
+        }
+        &:last-child {
+          margin: 0 0 0 0;
+        }
+      }
+    }
+  }
+  .toolsMobile {
+    width: 100%; height: auto; padding: 0; margin: 20px 0 10px 0; text-align: center;
+    a {
+      font-size: rem(14px); text-transform: uppercase; margin: 0 10px 0 0; position: relative;
+      &:last-child {
+        margin: 0 0 0 0;
+      } 
+    }
+  }
+}

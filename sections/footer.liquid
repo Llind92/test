@@ -1,0 +1,267 @@
+{%- assign social_icons = false -%}
+{%- assign inline_list = false -%}
+{%- assign locale_selector = false -%}
+{%- assign currency_selector = false -%}
+{%- assign show_payment_icons = false -%}
+{%- assign show_selectors = false -%}
+
+{%- if section.settings.show_payment_icons -%}
+  {%- unless shop.enabled_payment_types == empty -%}
+    {%- assign show_payment_icons = true -%}
+  {%- endunless -%}
+{%- endif -%}
+
+{%- capture payment_icon_markup -%}
+  {%- if show_payment_icons -%}
+      <ul class="listFooter__box--payments">
+        {%- for type in shop.enabled_payment_types -%}
+          <li class="payment-icon">
+            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+          </li>
+        {%- endfor -%}
+      </ul>
+  {%- endif -%}
+{%- endcapture -%}
+
+<footer class="g-footer" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
+  <div class="socialContent">
+    <div class="container">
+      <div class="columns is-vcentered">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+      {%- when 'newsletter' -%}
+        <div class="column is-full-mobile is-three-fifths-tablet is-two-thirds-desktop is-two-thirds-widescreen">
+          <div class="formNewsletterFooter">
+            {%- assign formId = 'ContactFooter' -%}
+            {% form 'customer', id: formId, novalidate: 'novalidate' %}
+              {%- if form.posted_successfully? -%}
+                <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                  {{ 'general.newsletter_form.confirmation' | t }}
+                </p>
+              {%- endif -%}
+              <h3>Suscríbete</h3>
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="formContFlex {% if form.errors %} input-group--error{% endif %}">
+                <div class="animatedField">
+                  <input type="email"
+                    name="contact[email]"
+                    id="{{ formId }}-email"
+                    class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
+                    value="{{ form.email }}"
+                    aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                    aria-required="true"
+                    required
+                    autocorrect="off"
+                    autocapitalize="off"
+                    {% if form.errors %}
+                      aria-invalid="true"
+                      aria-describedby="{{ formId }}-email-error"
+                      data-form-status
+                    {% endif %}>
+                    <label for="{{ formId }}-email">Correo Electrónico</label>
+                </div>
+                  <button type="submit" class="btn newsletter__submit" name="commit" >
+                    {{ 'general.newsletter_form.submit' | t }}
+                  </button>
+              </div>
+              {% if form.errors contains 'email' %}
+                <span id="{{ formId }}-email-error" class="input-error-message">
+                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                  {% include 'icon-error' %}
+                  <span class="site-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                </span>
+              {% endif %}
+            {% endform %}
+          </div>
+        </div><!-- end.formNewsletter -->
+      {%- endcase -%}
+    {%- endfor -%}
+        <div class="column">
+          <div class="listFooter">
+            <div class="listFooter__box">
+              <div class="listFooter__box--socialfoot">
+                <h3>Síguenos en:</h3>
+                <ul>
+                  <li><a class="btnSocial circle btnSocial__tni--facebook" href="#" target="_blank"></a></li>
+                  <li><a class="btnSocial circle btnSocial__tni--instagram" href="#" target="_blank"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div><!-- end.column -->
+      </div><!-- end.columns -->
+    </div><!-- end.container -->
+  </div><!-- end.socialContent -->
+  <div class="copyToolFooterContent">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <div class="listFooter">
+            <div class="listFooter__box">
+              <div class="listFooter__box--brand">
+    {%- assign img_url = section.settings.logo_footer | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                <a href="{{ routes.root_url }}" data-image-loading-animation>
+    {% capture logo_alt %}{{ section.settings.logo_footer.alt | default: shop.name }}{% endcapture %}
+                  <img class="lazyload js"
+                      src="{{ section.settings.logo_footer | img_url: '300x300' }}"
+                      data-src="{{ img_url }}"
+                      data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                      data-aspectratio="{{ section.settings.logo_footer.aspect_ratio }}"
+                      data-sizes="auto"
+                      alt="{{ logo_alt | escape }}">
+                  <p class="site-title">{{ shop.name }}</p>
+                </a>
+              </div>
+            </div>
+          </div><!-- end.listFooter -->
+        </div>
+{%- for block in section.blocks -%}
+    {%- case block.type -%}
+    {%- when 'link_list' -%}
+    {%- assign footer_linklist = block.settings.menu -%}
+        <div class="column is-one-quarter">
+          <div class="listFooter">
+            <div class="listFooter__box">
+            {%- if block.settings.title -%}
+              <h4>{{ block.settings.title | escape }}</h4>
+            {%- endif -%}
+              <ul class="listFooter__box--listItems">
+            {%- for link in linklists[footer_linklist].links -%}
+                <li>
+                  <a href="{{ link.url }}"
+                     {% if link.current %} aria-current="page"{% endif %}
+                  >
+                    {{ link.title | escape }}
+                  </a>
+                </li>
+            {%- endfor -%}
+              </ul>
+            </div>
+          </div><!-- end.listFooter -->
+        </div>
+    {%- endcase -%}
+{%- endfor -%}
+        <div class="column is-one-quarter">
+          <div class="listFooter">
+            <div class="listFooter__box">
+              {{ payment_icon_markup }}
+            </div>
+          </div><!-- end.listFooter -->
+        </div><!-- end.column -->
+      </div><!-- end.columns -->
+      <div class="columns">
+        <div class="column is-12">
+          <hr>
+        </div>
+      </div><!-- end.columns -->
+      <div class="columns">
+        <div class="column is-full">
+          <div class="listFooter">
+            <div class="listFooter__box">
+              <div class="listFooter__box--copyright">
+                <p>Todos los Derechos Reservados | <strong>&copy; {{ shop.name | link_to: routes.root_url }} {{ 'now' | date: "%Y" }}</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- end.columns -->
+    </div><!-- end.container -->
+  </div><!-- end.copyToolFooterContent -->
+
+</footer>
+
+
+
+{% schema %}
+{
+  "name": {
+    "en": "Footer",
+    "es": "Pie de página"
+  },
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_footer",
+      "label": {
+        "en": "Logo image",
+        "es": "Logo"
+      }
+    },
+    {
+      "type": "header",
+      "content": {
+        "en": "Payment methods",
+        "es": "Métodos de pago"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": {
+        "en": "Show payment icons",
+        "es": "Mostrar iconos de pago"
+      },
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": {
+        "en": "Menu",
+        "es": "Menú"
+      },
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": {
+            "en": "Heading",
+            "es": "Título"
+          },
+          "default": {
+            "en": "ISI Cosmetics",
+            "es": "ISI Cosmetics"
+          }
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": {
+            "en": "Menu",
+            "es": "Menú"
+          },
+          "default": "footer"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "limit": 1,
+      "name": {
+        "en": "Newsletter signup",
+        "es": "Suscripción al boletín"
+      },
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": {
+            "en": "Heading",
+            "es": "Título"
+          },
+          "info": {
+            "en": "Subscribers will be added to your “accepts marketing” [customer list.](/admin/customers?query=&accepts_marketing=1)",
+            "es": "Se añadirá los suscriptores a tu [lista de clientes.](/admin/customers?query=&accepts_marketing=1) \"acepta marketing\"."
+          },
+          "default": {
+            "en": "Newsletter",
+            "es": "Boletín"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

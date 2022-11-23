@@ -1,0 +1,257 @@
+{%- if section.settings.slideshow_height == 'adapt' -%}
+  {% comment %}
+    'min_aspect_ratio' is the minimum aspect ratio of images shown without
+    whitespace when 'slideshow_height' is set to 'adapt'.
+    The aspect ratio values for the first image in the slideshow will be used
+    unless it is blank, in that case a ratio of 2:1 will be used.
+  {% endcomment %}
+
+  {%- assign first_block = section.blocks[0] -%}
+  {%- if first_block.settings.image.aspect_ratio == blank -%}
+    {%- assign min_aspect_ratio = 2.0 -%}
+  {%- else -%}
+    {%- assign min_aspect_ratio = first_block.settings.image.aspect_ratio -%}
+  {%- endif -%}
+  {% assign wrapper_height = 100 | divided_by: min_aspect_ratio %}
+{%- endif -%}
+
+<section data-section-id="{{ section.id }}" data-section-type="hero-slider-section">
+  {%- if section.blocks.size > 0 -%}
+  <div class="heroContent">
+
+    <div id="mainslide" data-autorotate="{{ section.settings.autorotate }}" data-speed="{{ section.settings.autorotate_speed | times: 1000 }}" class="slide-main-hero">
+    {%- for block in section.blocks -%}
+      {%- assign text_alignments = block.settings.text_alignment | split: ' ' -%}
+      {%- assign text_horizontal_alignment = text_alignments.first -%}
+      {%- assign block_image = block.settings.image -%}
+      <div>
+        <figure class="slideBox {{text_horizontal_alignment}}">
+{% if block_image == blank %}
+          <div class="slideshow__image js">
+            <div class="placeholder-background">
+              {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+              {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          </div>
+{% else %}
+          <div
+            {% unless block_image.alt == blank %}
+            role="img"
+            aria-label="{{ block_image.alt | escape }}"
+            data-alt="{{ block_image.alt | escape }}"
+            {% endunless %}
+            class="slideshow__image box ratio-container lazyload{% unless forloop.first %} lazypreload{% endunless %} js"
+            data-bg="{{ block_image | img_url: '300x300' }}"
+            data-bgset="{% include 'bgset', image: block_image %}"
+            data-sizes="auto"
+            data-parent-fit="contain"
+            data-image-loading-animation>
+          </div>
+{% endif %}
+          <figcaption style="color: {{ block.settings.color_text }};">
+        {% unless block.settings.slide_title == blank and block.settings.subheading == blank %}
+        {%- unless block.settings.slide_title == blank -%}
+            <h1>{{ block.settings.slide_title | escape }}</h1>
+            <hr>
+        {%- endunless -%}
+        {%- unless block.settings.subheading == blank -%}
+            <p>{{ block.settings.subheading }}</p>
+        {%- endunless -%}
+        {% endunless %}
+        {%- assign show_link_button = false -%}
+        {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+          {%- assign show_link_button = true -%}
+        {%- endif -%}
+        {%- if show_link_button -%}
+            <a href="{{ block.settings.button_link }}" class="btnpr btnpr__primary btnpr__primary--border"><span>{{ block.settings.button_label | escape }}</span><i class="lni lni-arrow-right"></i></a>
+        {%- endif -%}
+          </figcaption>
+          {% if section.settings.show_overlay %}<div class="overlaySlide"></div>{% endif %}
+        </figure>
+      </div><!-- end.itemSlide -->
+    {%- endfor -%}
+    </div><!-- end#mainSlide -->
+
+    <button class="btnSlideProd bLeftP" id="prevslideHomeMain"></button>
+    <button class="btnSlideProd nRightP" id="nextslideHomeMain"></button>
+
+  </div><!-- end.heroContent -->
+  {%- endif -%}
+
+  {% if section.blocks.size == 0 %}
+    <div class="placeholder-noblocks">
+      {{ 'homepage.onboarding.no_content' | t }}
+    </div>
+  {% endif %}
+</section><!-- end.sectonHero -->
+
+
+{% schema %}
+{
+  "name": {
+    "en": "Slider Hero",
+    "es": "Hero Slider"
+  },
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": {
+        "en": "Show overlay",
+        "es": "Mostrar superposición"
+      },
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "autorotate",
+      "label": {
+        "en": "Auto-rotate slides",
+        "es": "Rotar las diapositivas automáticamente"
+      },
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autorotate_speed",
+      "label": {
+        "en": "Change slides every",
+        "es": "Cambiar diapositivas cada"
+      },
+      "max": 9,
+      "min": 3,
+      "step": 2,
+      "unit": {
+        "en": " s",
+        "es": " s"
+      },
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": {
+        "en": "Image Hero",
+        "es": "Imagen de Hero"
+      },
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": {
+            "en": "Image",
+            "es": "Imagen"
+          }
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": {
+            "en": "Text alignment",
+            "es": "Alineación de texto"
+          },
+          "default": "center-slide",
+          "options": [
+            {
+              "label": {
+                "en": "Center",
+                "es": "Centrada"
+              },
+              "value": "center-slide"
+            },
+            {
+              "label": {
+                "en": "Right",
+                "es": "Derecha"
+              },
+              "value": "right-slide"
+            },
+            {
+              "label": {
+                "en": "Left",
+                "es": "Izquierda"
+              },
+              "value": "left-slide"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "slide_title",
+          "label": {
+            "en": "Heading",
+            "es": "Título"
+          },
+          "default": {
+            "en": "Image slide",
+            "es": "Diapositiva de imagen"
+          }
+        },
+        {
+          "type": "richtext",
+          "id": "subheading",
+          "label": {
+            "en": "Subheading",
+            "es": "Subtítulo"
+          },
+          "default": {
+            "en": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "es": "<p>Usa este texto para compartir información sobre tu marca con tus clientes. Describe un producto, comparte anuncios o recibe clientes en tu tienda.</p>"
+          }
+        },
+        {
+          "type": "color",
+          "id": "color_text",
+          "label": {
+            "en": "Text",
+            "es": "Texto"
+          },
+          "default": "#131617"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": {
+            "en": "Button label",
+            "es": "Etiqueta de botón"
+          }
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": {
+            "en": "Button link",
+            "es": "Enlace de la diapositiva"
+          }
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "Slider Hero",
+        "es": "Hero Slider"
+      },
+      "category": {
+        "en": "Image",
+        "es": "Imagen"
+      },
+      "settings": {
+        "autorotate": false,
+        "autorotate_speed": 5
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

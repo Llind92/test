@@ -1,0 +1,105 @@
+<div data-section-id="{{ section.id }}" data-section-type="collection-slide-section"
+  data-enable-history-state="true"
+  data-ajax-enabled="{{ settings.enable_ajax }}">
+  <section class="slideCollectionContent">
+    <div class="container">
+    {% if section.settings.title != blank %}
+      <div class="columns">
+        <div class="column is-full">
+          <div class="descGen">
+            <h2>{{ section.settings.title | escape }}</h2>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+      <div class="columns">
+        <div class="column is-full">
+
+          <div class="contSlideCol">
+            <div class="slideProductsColl">
+        {%- assign product_limit = 6 -%}
+        {%- assign collection = collections[section.settings.collection] -%}
+        {% for product in collection.products limit: 8 %}
+              <div>
+                {% include 'product-card-grid-slide', product: product %}
+              </div>
+        {% else %}
+          {% for i in (1..product_limit) %}
+              <div class="prodListGrid{% unless product.available %} sold-out-prod{% endunless %}">
+              {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
+                  <div id="{{ wrapper_id }}" class="prodListGrid__img js" data-image-loading-animation>
+                    {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                    {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                  <div class="prodListGrid__cap">
+                    <p class="titleProd">{{ 'homepage.onboarding.product_title' | t }}</p>
+                    {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
+                  </div>
+                </div>
+          {% endfor %}
+        {% endfor %}
+            </div>
+            <button class="btnSlideProd bLeftP" id="prevProdColl"></button>
+            <button class="btnSlideProd nRightP" id="nextProdColl"></button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+{% schema %}
+{
+  "name": {
+    "en": "Featured collection Slide",
+    "es": "Colección destacada Slide"
+  },
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": {
+        "en": "Heading",
+        "es": "Título"
+      },
+      "default": {
+        "en": "Featured collection",
+        "es": "Colección destacada"
+      }
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": {
+        "en": "Collection",
+        "es": "Colección"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": {
+        "en": "Show 'View all' button",
+        "es": "Mostrar el botón 'Ver todo'"
+      },
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "Featured collection Slide",
+        "es": "Colección destacada Slide"
+      },
+      "category": {
+        "en": "Collection",
+        "es": "Colección"
+      }
+    }
+  ]
+}
+{% endschema %}

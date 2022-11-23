@@ -1,0 +1,34 @@
+            <div class="prodListGrid{% unless product.available %} sold-out-prod{% endunless %}">
+          {% capture img_id %}ProductCardImage-{{ section.id }}-{{ product.id }}{% endcapture %}
+          {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
+          {%- assign preview_image = product.featured_media.preview_image -%}
+          {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+              <div id="{{ wrapper_id }}" class="prodListGrid__img js" data-image-loading-animation>
+                <img id="{{ img_id }}"
+                  class="grid-view-item__image lazyload"
+                  alt="{{ preview_image.alt }}"
+                  data-src="{{ img_url }}"
+                  data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                  data-aspectratio="{{ preview_image.aspect_ratio }}"
+                  data-sizes="auto"
+                  data-image>
+                  <a href="{{ product.url | within: collection }}" class="fullBtnCol">{{ product.title }}</a>
+                  <div class="absButton">
+                    <form class="product-form" action="/cart/add" data-productid="{{product.id}}"  method="post">
+                      <label for="Quantity-{{ product.id }}">{{ 'products.product.quantity' | t }}</label>
+                      <input type="hidden" id="Quantity-{{ product.id }}"
+                            name="quantity" value="1" min="1" pattern="[0-9]*" data-quantity-input>
+                      <input type="hidden" name="id" data-productid="{{product.id}}" class="product-select" value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />
+                      <button type="submit" name="add" aria-label="{% unless product.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}" class="btnpr btnpr__primary btnpr__primary--borderBlack"><span>Agregar a Carrito</span><i class="lni lni-chevron-right"></i></button>
+                      <span class="hide" data-loader>
+                        {% include 'icon-spinner' %}
+                      </span>
+                    </form>
+                  </div><!-- end.addTCartButton -->
+              </div>
+              <div class="prodListGrid__cap">
+                <p class="titleProd"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></p>
+                {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
+              </div>
+              
+            </div>

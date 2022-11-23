@@ -1,0 +1,32 @@
+{% comment %}
+    Renders a pagination bar
+
+    Accepts:
+    - paginate: {Object} Paginate Liquid object (required)
+
+    Usage:
+    {% include 'pagination', paginate: paginate %}
+{% endcomment %}
+<ul class="paginationCosmetics">
+  {% unless paginate.previous.is_link %}
+  <li class="paginationCosmetics__button" aria-hidden="true">
+    <button class="btnPag" disabled><i class="lni lni-chevron-left"></i></button>
+  </li><!-- end.prevButton -->
+  {% else %}
+  <li class="paginationCosmetics__button">
+    <a href="{{ paginate.previous.url }}" class="btnPag"><i class="lni lni-chevron-left"></i></a>
+  </li><!-- end.prevButton -->
+  {% endunless %}
+  <li class="paginationCosmetics__text">
+    {{ 'general.pagination.current_page' | t: current: paginate.current_page, total: paginate.pages }}
+  </li><!-- end.textPagination -->
+  {% unless paginate.next.is_link %}
+  <li class="paginationCosmetics__button" aria-hidden="true">
+    <button class="btnPag" disabled><i class="lni lni-chevron-right"></i></button>
+  </li><!-- end.nextutton -->
+  {% else %}
+  <li class="paginationCosmetics__button">
+    <a href="{{ paginate.next.url }}" class="btnPag"><i class="lni lni-chevron-right"></i></a>
+  </li><!-- end.nextutton -->
+  {% endunless %}
+</ul>

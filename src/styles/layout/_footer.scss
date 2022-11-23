@@ -1,0 +1,193 @@
+/* ==|====================
+   Layout/Footer
+   ======================= */
+
+.g-footer {
+  width: 100%; height: auto; @include position(relative, null null null null); padding: 0; margin: 0; z-index: 3; background-color: transparent;
+}
+.socialContent {
+  width: 100%; height: auto; padding: 20px 0; margin: 0; background-color: $col2; @include box-sizing(border-box); position: relative;
+}
+.copyToolFooterContent {
+  width: 100%; height: auto; padding: 40px 0 60px; margin: 0; background-color: $col1; @include box-sizing(border-box); position: relative;
+  hr {
+    margin-top: 15px; margin-bottom: 15px; width: 100%; height: auto; border-bottom: 1px solid $col6;
+  }
+}
+.listFooter {
+  width: 100%; height: auto; padding: 0; margin: 0; list-style-type: none;
+  & h4 {
+    @include fluid-type(16px, 22px, 320px, 1200px); margin: 0 0 10px; padding: 0; text-transform: uppercase; text-align: center;
+  }
+  &__itemFoot {
+    width: 165px; list-style-type: none; padding: 0; margin: 0;
+  }
+  &__box {
+    width: 100%; height: auto; margin: 0; padding: 0; @include box-sizing(border-box);
+    &--brand {
+      text-align: center;
+      a {
+        display: block; width: 100%; max-width: 140px; height: auto; margin: 0 auto 15px; padding: 0 0;
+        img {
+          display: block; width: 100%; height: auto; margin: 0; padding: 0; object-fit: contain; font-family: "object-fit: contain";
+        }
+        .site-title {
+          font-size: 0; text-indent: -9999px; color: $white; opacity: 0; margin: 0; padding: 0;
+        }
+      }
+      // @media all and (min-width: 576px) {
+      //   a {
+      //     margin: 0;
+      //   }
+      // }
+      @media all and (min-width: 769px) {
+        margin: 0 auto 0;
+      }
+    }
+    &--listItems {
+      list-style-type: none; @include displayFlex(flex, column, center, center, wrap); width: 100%; margin-bottom: 5px; padding-bottom: 5px; border-bottom: 1px solid $c3;
+      li {
+        list-style-type: none; padding: 0; margin: 0 0 8px;
+        & a {
+          color: $c5; @include fluid-type(13px, 14px, 320px, 1200px); @include transition(all 300ms ease);
+          &:hover {
+            color: $col6;
+          }
+        }
+        &:last-child {
+          margin: 0;
+        }
+      }
+      &:last-child {
+        margin-bottom: 0; padding-bottom: 0; border-bottom: none;
+      }
+      @media all and (min-width: 769px) {
+        @include displayFlex(flex, column, center, flex-start, wrap); margin-bottom: 0; padding-bottom: 0; border-bottom: none;
+      }
+    }
+    &--payments {
+      list-style-type: none; @include displayFlex(flex, row, center, center, wrap); width: 100%;
+      li {
+        list-style-type: none; padding: 0; margin: 0 5px 0 0;
+        & svg {
+          width: 35px; height: auto; padding: 0; margin: 0;
+        }
+        &:last-child {
+          margin: 0;
+        }
+      }
+    }
+    &--socialfoot {
+      @include displayFlex(flex, column, center, center, wrap); width: 100%; height: auto; padding: 0; margin: 0; position: relative;
+      & h3 {
+        @include fluid-type(16px, 28px, 320px, 1200px); margin: 0 0 15px; padding: 0;
+      }
+      & ul {
+        list-style-type: none; padding: 0; margin: 0; @include displayFlex(flex, row, center, center, wrap);
+        li {
+          list-style-type: none; margin-right: 10px;
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+      @media all and (min-width: 769px) {
+        @include displayFlex(flex, row, flex-start, center, wrap);
+        & h3 {
+          margin: 0 40px 0 0;
+        }
+      }
+      @media all and (min-width: 1024px) {
+        & h3 {
+          margin: 0 45px 0 0;
+        }
+      }
+      @media all and (min-width: 1216px) {
+        & h3 {
+          margin: 0 60px 0 0;
+        }
+      }
+    }
+    &--copyright {
+      p {
+        color: $c5; text-align: center; margin: 0; @include fluid-type(10px, 15px, 320px, 1200px);
+        & strong {
+          font-family: $monsemi; text-transform: uppercase;
+        }
+        & a {
+          color: $c5; text-decoration: none;
+          &:hover {
+            color: $c4;
+          }
+        }
+      }
+    }
+  }
+  @media all and (min-width: 769px) {
+    & h4 {
+      text-align: left;
+    }
+  }
+}
+
+.formNewsletterFooter {
+  width: 100%; height: auto; padding: 0; margin: 0; position: relative; @include box-sizing(border-box);
+  & form {
+    width: 100%; height: auto; padding: 0; margin: 0; border: 0; @include displayFlex(flex, column, center, center, wrap);
+    & .animatedField {
+      width: 70%; margin-bottom: 15px;
+    }
+    & button {
+      width: 30%; margin-top: 10px;
+      &:hover {
+        background-color: $col5!important; color: $white!important;
+      }
+    }
+  }
+  & h3 {
+    @include fluid-type(18px, 28px, 320px, 1216px); margin: 0 0 15px; padding: 0;
+  }
+  @media all and (min-width: 394px) {
+    & form {
+      & .animatedField {
+        margin-bottom: inherit;
+      }
+    }
+  }
+  @media all and (min-width: 769px) {
+    & h3 {
+      margin: 0;
+    }
+    & form {
+      @include displayFlex(flex, row, space-between, center, wrap);
+      & .animatedField {
+        width: 50%;
+      }
+      & button {
+        width: 50%; margin-top: 0;
+      }
+    }
+  }
+  @media all and (min-width: 1024px) {
+    & form {
+      & .animatedField {
+        width: 70%;
+      }
+      & button {
+        width: 30%;
+      }
+    }
+  }
+}
+.formContFlex {
+  width: 100%; max-width: 100%; height: auto; padding: 0; margin: 0; @include displayFlex(flex, row, center, center, wrap);
+  @media all and (min-width: 769px) {
+    max-width: 325px;
+  }
+  @media all and (min-width: 1024px) {
+    max-width: 475px;
+  }
+  @media all and (min-width: 1266px) {
+    max-width: 600px;
+  }
+}

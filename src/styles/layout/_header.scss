@@ -1,0 +1,160 @@
+/* ==|====================
+   Layout/Header
+   ======================= */
+
+// Header Principal Sticky
+.head-block {
+  width: 100%; padding: 0; margin: 0 0 0 0; position: relative;
+}
+.search-bar {
+  z-index: 1001!important;
+}
+.g-header {
+  width: 100%; height: auto; position: relative; padding: 0 0; margin: 0; background-color: $white; z-index: 100; border-bottom: none; 
+}
+.headerFix {
+  width: 100%; height: auto; @include position(fixed, 0 null null 0); padding: 0 0; margin: 0; z-index: 100; border-bottom: none; @include transition(transform 200ms ease, all 0.25s); box-shadow: 0 0 0 rgba($black, 0.0); z-index: 1000;
+  &.activeHead {
+    box-shadow: 0 4px 10px rgba($black, 0.10); top: 0!important;
+  }
+}
+// Barra mensaje
+.announcement-bar {
+  padding: 0!important; background-color: $col1; @include box-sizing(border-box); border-bottom: 1px solid $c2!important;
+  &__message {
+    font-size: 10px!important; font-family: $monsemi; color: $c5!important; padding: 6px 22px!important;
+  }
+  @media all and (min-width: 750px) {
+    &__message {
+      font-size: 13px!important;
+    }
+  }
+}
+// Logo Principal Estilos
+.logo-content {
+  width: 100%; height: auto; padding: 20px 0; margin: 0; position: relative; border-bottom: 1px solid $c2; @include box-sizing(border-box);
+  & .site-logo {
+    width: 100px; height: auto; padding: 0; margin: 0 auto 0 10px; display: block;
+    & a {
+      display: block; width: auto; height: auto; margin: 0 auto;
+      & img {
+        display: block; width: 100%; max-width: 120px; height: auto; margin: 0 auto; padding: 0;
+      }
+      & .site-title {
+        font-size: 0; text-indent: -9999px; color: $white; opacity: 0; margin: 0; padding: 0;
+      }
+    }
+  }
+  @media all and (min-width: 768px) {
+    padding: 18px 0;
+    & .site-logo {
+      width: 230px;
+      & a {
+        & img {
+          max-width: 230px;
+        }
+      }
+    }
+  }
+  @media all and (min-width: 992px) {
+    padding: 20px 0; border-bottom: none;
+    & .site-logo {
+      width: 296px; margin: 0 auto;
+      & a {
+        & img {
+          max-width: 296px;
+        }
+      }
+    }
+  }
+}
+// ToolsHead Estilos
+.toolsHead {
+  width: auto; height: auto; padding: 0; margin: 0; @include position(absolute, 50% 0 null null); @include transform(translateY(-50%));
+  @media all and (min-width: 992px) {
+    top: 10px; @include transform(translateY(0%));
+  }
+}
+.controlsHead {
+  padding: 0; margin: 0; display: none; list-style-type: none; @include displayFlex(flex, row, flex-end, center, wrap);
+  &__item {
+    list-style-type: none; padding: 0; margin: 0 10px 0 0; position: relative;
+  }
+  &__link {
+    color: $c5; font-size: rem(20px); @include transition(all 0.23s ease); text-decoration: none; @include box-sizing(border-box); outline: 0;
+    &--users {
+      display: block; width: 35px; height: 35px; padding: 0; line-height: 35px; position: relative; text-align: center; border: none; border-radius: 0; background-color: transparent; @include transition(all 300ms); cursor: pointer;
+      @media all and (min-width: 768px) {
+        padding: 0;
+      }
+    }
+    &--carrito {
+      display: block; width: 35px; height: 35px; padding: 0; position: relative; text-align: center; border: none; border-radius: 0; color: $c5; line-height: 33px; background-color: transparent; @include transition(all 300ms);
+      span {
+        display: block; width: 13px; height: 13px; @include position(absolute, -4px -4px null null); background-color: $col4; text-align: center; line-height: 13px; border-radius: 50%; color: $white; font-size: 9px;
+      }
+      &.hideCount {
+        span {
+          display: none;
+        }
+      }
+    }
+    &--menuMobile {
+      display: block; width: 35px; height: 35px; padding: 0; position: relative; border: none; background-color: transparent; @include transition(all 300ms);
+      span {
+        display: block; width: 20px; height: 2px; @include position(absolute, 50% 5px null null); background-color: $c5; @include transform(translateY(-50%)); @include transition(all 300ms ease-in);
+      }
+      &:before, &:after {
+        content: ''; height: 2px; @include position(absolute, null 5px null null); background-color: $c5; @include transition(transform 300ms ease, width 250ms ease, all 300ms ease);
+      }
+    }
+  }
+  @media all and (min-width: 992px) {
+    &__link {
+      &--menuMobile {
+        display: none;
+      }
+    }
+  }
+}
+// Botón Menu Mobile(Open)
+[data-menu-expand="true"] {
+  span { opacity: 0; }
+  &:before {
+    top: 17px; width: 25px; @include transform(rotate(-45deg));
+  }
+  &:after {
+    bottom: 16px; width: 25px; @include transform(rotate(45deg));
+  }
+}
+[data-menu-expand="false"] {
+  span { opacity: 1; }
+  &:before {
+    top: 12px; width: 25px; @include transform(rotate(0deg));
+  }
+  &:after {
+    bottom: 11px; width: 15px; @include transform(rotate(0deg));
+  }
+}
+
+// Buscador
+.search-bar {
+  &__interior {
+    background-color: $white;
+  }
+  &__submit {
+    z-index: 1; position: absolute!important; top: 0!important; right: 0!important; display: inline-block!important; padding: 0 12px; height: 100%!important; line-height: inherit!important; vertical-align: middle; background-color: $col6; border: 0; margin: 0; color: $white!important; outline: 0!important;
+  }
+  &__input {
+    border: 1px solid $col3!important; border-radius: 0!important; background-color: $col3!important; color: $c5!important; outline: 0!important;
+    &:focus {
+      border-color: $col2!important; background-color: $white!important;
+    }
+    @include placeholder {
+      color: $col6!important;
+    }
+  }
+  &__close {
+    outline: 0!important;
+  }
+}

@@ -1,0 +1,44 @@
+{% comment %}
+    Renders a list of menu items
+    Accepts:
+    - linklist: {Object} Linklist Liquid object (required)
+    - wrapper_class: {String} CSS wrapper class for the navigation (optional)
+
+    Usage:
+    {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
+{% endcomment %}
+<ul id="md">
+{% for link in linklists[linklist].links %}
+  {%- assign child_list_handle = link.title | handleize -%}
+  {% if link.links != blank %}
+  <li class="itemSubMenu{% if link.active %} activoLink{% endif %}">
+    <button class="btnMenuSub" type="button" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
+      <span class="site-nav__label">{{ link.title | escape }}</span>{% include 'icon-chevron-down' %}
+    </button>
+
+    <div class="site-nav__dropdown" id="SiteNavLabel-{{ child_list_handle }}">
+      <ul>
+        {% for childlink in link.links %}
+        <li>
+          <a href="{{ childlink.url }}"
+            class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}"
+            {% if childlink.current %} aria-current="page"{% endif %}
+          >
+            <span class="site-nav__label">{{ childlink.title | escape }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+  {% else %}
+  <li {% if link.active %} class="activoLink"{% endif %}>
+    <a href="{{ link.url }}"
+      {% if link.current %} aria-current="page"{% endif %}
+    >
+      {{ link.title | escape }}
+    </a>
+  </li>
+  {% endif %}
+{% endfor %}
+</ul>

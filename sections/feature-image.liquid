@@ -1,0 +1,141 @@
+<section class="imageTextContent">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-full">
+
+        <div class="textGridContent alignText-{{ section.settings.layout }}">
+          <div class="textGridContent__image">
+            <figure class="imgText">
+        {% if section.settings.image != blank %}
+        {% capture img_id %}imageTextCont-{{ section.id }}{% endcapture %}
+        {% capture wrapper_id %}imageTextContWr-{{ section.id }}{% endcapture %}
+        {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        {% include 'image-style', image: section.settings.image, height: 545, wrapper_id: wrapper_id, img_id: img_id %}
+              <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+                <div style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;" data-image-loading-animation>
+                  <img id="{{ img_id }}"
+                       class="feature-row__image lazyload"
+                       data-src="{{ img_url }}"
+                       data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                       data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+                       data-sizes="auto"
+                       alt="{{ section.settings.image.alt | escape }}">
+                </div>
+              </div>
+              <noscript>
+                {{ section.settings.image | img_url: '600x600', scale: 2 | img_tag: section.settings.image.alt, 'feature-row__image' }}
+              </noscript>
+        {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+            </figure>
+          </div>
+          <div class="textGridContent__text">
+        {% if section.settings.text != blank %}
+            <div class="rte rte-setting featured-row__subtext">{{ section.settings.text }}</div>
+        {% endif %}
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        {%- capture ariaLabel -%}
+          {{- section.settings.button_label -}}
+          {%- if section.settings.button_link.type == 'frontpage_link' -%}
+            : {{ 'homepage.general.title' | t -}}
+          {%- elsif section.settings.button_link.type == 'catalog_link' -%}
+            : {{ 'collections.catalog.title' | t -}}
+          {%- elsif section.settings.button_link.object.title -%}
+            : {{ section.settings.button_link.object.title -}}
+          {%- endif -%}
+        {%- endcapture -%}
+
+            <a href="{{ section.settings.button_link }}" class="btnpr btnpr__primary btnpr__primary--border"><span>{{ section.settings.button_label | escape }}</span><i class="lni lni-arrow-right"></i></a>
+        {% endif %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": {
+    "en": "Grid Image with text",
+    "es": "Grilla Imagen con texto"
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": {
+        "en": "Image",
+        "es": "Imagen"
+      }
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": {
+        "en": "Image alignment",
+        "es": "Alineación de imagen"
+      },
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": {
+            "en": "Left",
+            "es": "Izquierda"
+          }
+        },
+        {
+          "value": "right",
+          "label": {
+            "en": "Right",
+            "es": "Derecha"
+          }
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": {
+        "en": "Text",
+        "es": "Texto"
+      },
+      "default": {
+        "en": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+        "es": "<p>Vincula un texto largo con una imagen para dar visibilidad a tu producto, colección o artículo de blog seleccionados. Agrega detalles sobre disponibilidad, estilo, o incluso ofrece una reseña.</p>"
+      }
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": {
+        "en": "Button label",
+        "es": "Etiqueta de botón"
+      }
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": {
+        "en": "Button link",
+        "es": "Enlace de botón"
+      }
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "Gridd Image with text",
+        "es": "Grilla Imagen con texto"
+      },
+      "category": {
+        "en": "Image",
+        "es": "Imagen"
+      }
+    }
+  ]
+}
+{% endschema %}

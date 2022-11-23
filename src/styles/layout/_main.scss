@@ -1,0 +1,351 @@
+/* ==|====================
+   Layout/Main
+   ======================= */
+main {
+  width: 100%; height: auto; position: relative; padding-top: 0!important; margin: 0; z-index: 3;
+}
+article {
+  width: 100%; height: auto; padding: 0; margin: 0; position: relative;
+  &.bg-gen {
+    margin-top: 60px;
+  }
+}
+.PageContainer {
+  min-height: 100vh; @include displayFlex(flex, column, center, center, wrap);
+}
+.index-section {
+  padding-top: 25px!important;
+}
+.descGen {
+  width: 100%; height: auto; padding: 0; margin: 0;
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0; position: relative; color: $c5; text-align: center;
+  }
+  .title_page {
+    margin-bottom: 20px;
+  }
+  p { text-align: center; margin: 0 0 0 0; }
+}
+.titleGen {
+  width: 100%; height: auto; padding: 20px 25px; margin: 0;
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0; position: relative; display: inline-block; color: $col6;
+    span {
+      white-space: nowrap; @include position(absolute, 20px null null 40%); color: rgba($black, 0.25); z-index: -1; font-size: rem(40px);
+    }
+  }
+}
+
+//Sections Genericos
+.containerGridFeatured {
+  width: 100%; height: auto; padding: 60px 0 0; margin: 0; position: relative;
+}
+.dividerFeatured {
+  width: 100%; height: auto; padding: 0; margin: 0 0 20px; position: relative;
+  & span {
+    width: 45px; height: 47px; padding: 0; margin: 0 auto; background-image: url('icon_divider.svg'); background-position: center; background-repeat: no-repeat; background-size: 100%; display: block; position: relative;
+    &:before,
+    &:after {
+      content: ''; @include position(absolute, 50% null null null); width: 85px; height: 1px; background-color: $c5; @include transform(translateY(-50%));
+    }
+    &:before {
+      left: calc(-100% - 50px);
+    }
+    &:after {
+      right: calc(-100% - 50px);
+    }
+  }
+}
+
+//Sections Genericos
+.imageTextContent {
+  width: 100%; height: auto; padding: 60px 0 20px; margin: 0; position: relative;
+}
+.slideCollectionContent {
+  width: 100%; height: auto; padding: 0; margin: 0 0 30px; position: relative;
+  & h2 {
+    @include fluid-type(16px, 28px, 320px, 1216px); margin-bottom: 20px;
+  }
+  & .slick-slide {
+    @include box-sizing(border-box); outline: 0!important;
+    & > div {
+      @include box-sizing(border-box); padding: 0 10px;
+    }
+  }
+}
+
+.contSlideCol {
+  width: 100%; height: auto; padding: 0; margin: 0; position: relative;
+  &:hover {
+    & .btnSlideProd  {
+      opacity: 1;
+    }
+  }
+}
+
+// Colletcion Template
+.collectionHeader {
+  width: 100%; height: auto; padding: 65px 0 0; margin: 0; position: relative; @include box-sizing(border-box);
+  &__title {
+    width: 100%; height: auto; padding: 0; margin: 0 0 30px;
+    & h1 {
+      @include fluid-type(20px, 36px, 320px, 1216px); margin: 0 0 5px; padding: 0; text-align: center; text-transform: uppercase; color: $c5; outline: 0!important;
+    }
+    & .rte {
+      text-align: center; @include fluid-type(13px, 16px, 320px, 1216px);
+      & a {
+        color: $c3!important; @include transition(all 300ms ease);
+        &:hover {
+          color: $c5!important;
+        }
+      }
+      & strong,
+      & b {
+        font-family: $monsemi!important;
+      }
+    }
+    & .btnpr {
+      width: 250px; margin: 0!important; background: $c5!important; color: $col1!important; border: 1px solid $c5!important;
+      &:hover {
+        background: $c4!important; color: $col1!important;
+      }
+    }
+    @media all and (min-width: 750px) {
+      & h1 {
+        margin: 0 0 20px;
+      }
+    }
+    @media all and (min-width: 992px) {
+      & .btnpr {
+        width: 320px;
+      }
+    }
+  }
+}
+.filtersToolbar {
+  width: 100%; height: auto; padding: 10px 0; margin: 0; position: relative; @include box-sizing(border-box); background-color: $white; border-bottom: 1px solid $c1; border-top: 1px solid $c1;
+}
+.filters-toolbar .icon-chevron-down {
+  fill: $col6!important; z-index: 1!important;
+}
+.contListCollection {
+  width: 100%; height: auto; padding: 50px 10px 0; margin: 0; position: relative; @include box-sizing(border-box);
+  & .grid--view-items {
+    margin-bottom: 30px;
+  }
+  & .centerList {
+    @include displayFlex(flex, row, center, center, wrap);
+  }
+  hr {
+    margin: 30px 0 30px; border-bottom: 1px solid $c1;
+  }
+  @media all and (min-width: 750px) {
+    padding: 50px 0 0;
+  }
+}
+
+// ContactForm Section
+.contactSection {
+  width: 100%; height: auto; padding: 0 10px; margin: 0 0 60px; position: relative; @include box-sizing(border-box);
+  & .contformulario {
+    width: 100%; height: auto; padding: 0; margin: 0; position: relative; @include box-sizing(border-box);
+    & .checkCustom {
+      width: 100%; height: auto; padding: 0; margin: 0 0 20px; position: relative; @include box-sizing(border-box); text-align: center;
+    }
+    & .btnpr {
+      width: 220px; display: block; margin: 0 auto; background-color: $c5!important; color: $col1!important; border: 1px solid $c5!important;
+      &:hover {
+        background-color: $c3!important; color: $white!important; border-color: $c3!important;
+      }
+    }
+  }
+  & .fieldsLogin {
+    width: 100%; height: auto; padding: 0; margin: 20px 0 0; position: relative;
+    .FieldCheckForms {
+      margin-bottom: 10px;
+    }
+    & .textRecover {
+      margin-bottom: 5px; @include fluid-type(12px, 14px, 320px, 1216px);
+      & a {
+        color: $c5!important; text-decoration: underline; @include transition(all 300ms);
+        &:hover {
+          color: $col6!important;
+        }
+      }
+    }
+    & .btnpr {
+      margin-bottom: 15px;
+    }
+    & .textCreate {
+      margin-bottom: 0; @include fluid-type(13px, 14px, 320px, 1216px);
+      & a {
+        color: $c5!important; text-decoration: underline; @include transition(all 300ms);
+        &:hover {
+          color: $col6!important;
+        }
+      }
+    }
+  }
+  @media all and (min-width: 768px) {
+    padding: 0;
+  }
+}
+.pageGeneric {
+  width: 100%; height: auto; padding: 60px 0 0; margin: 0 0 60px; position: relative; @include box-sizing(border-box);
+  & .sectionHeader {
+    & .titleSectionGen {
+      @include fluid-type(18px, 28px, 320px, 1216px); margin-bottom: 25px; padding: 0; text-transform: uppercase;
+    }
+  }
+  & .rte {
+    margin-bottom: 0!important; color: $c5!important; @include fluid-type(14px, 16px, 320px, 1216px);
+    & strong,
+    & b {
+      font-family: $monsemi!important;
+    }
+    & a {
+      font-family: $monsemi!important; color: $col6!important;
+    }
+  }
+  & .collectionHeader {
+    padding: 0;
+  }
+  & .formContFlex {
+    margin: 0 auto;
+  }
+}
+.shopify-challenge {
+  &__container {
+    margin: 50px auto 0!important;
+    @media all and (min-width: 992px) {
+      margin: 100px auto 0!important;
+    }
+  }
+  &__message {
+    @include fluid-type(13px, 16px, 320px, 1216px); color: $c5!important;
+  }
+}
+.contAccount {
+  width: 100%; height: auto; padding: 0 10px; margin: 0; position: relative; @include box-sizing(border-box);
+  & .table {
+    & th {
+      font-family: $monsemi!important; color: $c5!important; @include fluid-type(15px, 16px, 320px, 1216px);
+    }
+    & td {
+      color: $c5!important; @include fluid-type(13px, 15px, 320px, 1216px);
+      & a {
+        color: $col6!important; @include transition(all 300ms ease);
+        &:hover {
+          color: $col4!important;
+        }
+      }
+    }
+  }
+  & .buttonsForms {
+    & .btnpr {
+      margin-bottom: 10px; height: 40px!important; line-height: 40px!important; padding: 0 20px!important; font-size: rem(11px)!important;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      @media all and (min-width: 992px) {
+        height: 46px!important; font-size: rem(13px)!important; line-height: 46px!important; padding: 0 30px!important;
+      }
+    }
+  }
+  & .fieldCheck {
+    width: 100%; height: auto; padding: 0; margin: 5px 0 10px; position: relative;
+  }
+  & .btnpr {
+    width: 260px!important;
+  }
+  @media all and (min-width: 1024px) {
+    padding: 0;
+  }
+}
+.editAddresCont {
+  width: 100%; height: auto; padding: 10px 10px 0; margin: 20px 0 0; position: relative; @include box-sizing(border-box); border-top: 1px solid $c2;
+  @media all and (min-width: 1024px) {
+    padding: 15px 0 0;
+  }
+}
+
+// Error page
+.errorPage {
+  width: 100%; height: auto; padding: 60px 10px; margin: 0; position: relative; @include box-sizing(border-box);
+  @media all and (min-width: 992px) {
+    padding: 100px 0; 
+  }
+}
+
+// Cart Template Section
+.cartTemplateCont {
+  width: 100%; height: auto; padding: 0 10px; margin: 0 0 60px; position: relative; @include box-sizing(border-box);
+}
+
+// Sngle page
+.productSingleCont {
+  width: 100%; height: auto; padding: 50px 10px; margin: 0; position: relative; @include box-sizing(border-box);
+  & .descSingle {
+    margin-top: 10px!important; margin-bottom: 10px!important; color: $c5!important; padding: 0; @include fluid-type(13px, 16px, 320px, 1216px);
+    & hr {
+      margin: 0 0 20px; border-bottom: 1px solid $c1!important;
+    }
+    & h3 {
+      @include fluid-type(18px, 30px, 320px, 1216px); margin: 0 0 20px; text-align: center;
+    }
+    & ul {
+      @include displayFlex(flex, column, flex-start, flex-start, wrap); padding: 15px 0 0; margin: 0 0 15px; list-style-type: none;
+      & li {
+        position: relative; padding: 0 0 0 20px; margin: 0 0 4px; @include fluid-type(13px, 16px, 320px, 1216px); list-style-type: none;
+        &:before {
+          content: ''; width: 5px; height: 5px; background-color: $col5; @include position(absolute, 50% null null 7px); border-radius: 50%; @include transform(translateY(-50%));
+        }
+        &:last-child {
+          margin: 0!important;
+        }
+      }
+    }
+  }
+  & .policyDesc {
+    margin: 5px 0 0!important; color: $c3!important; padding: 0; @include fluid-type(11px, 13px, 320px, 1216px);
+    & a {
+      color: $col6!important; @include transition(all 300ms ease);
+      &:hover {
+        color: $col5!important;
+      }
+    }
+  }
+  @media all and (min-width: 556px) {
+    & .descSingle {
+      margin-top: 20px!important;
+    }
+  }
+  @media all and (min-width: 750px) {
+    & .descSingle {
+      margin-top: 30px!important;
+    }
+  }
+  @media all and (min-width: 992px) {
+    padding: 60px 0; 
+  }
+}
+.returnPageProd {
+  padding-top: 50px!important; margin-bottom: 40px!important;
+  & .btnpr {
+    width: 280px!important; background: $c5!important; color: $col1!important; border: 1px solid $c5!important;
+    &:hover {
+      background: $c4!important; color: $col1!important;
+    }
+  }
+}
+
+// Rrecomendaciones Post
+.sectionRecommendations {
+  width: 100%; height: auto; padding: 0; margin: 0; position: relative; @include box-sizing(border-box);
+  .titleHeadRecommendations {
+    width: 100%; height: auto; padding: 0; margin: 0; position: relative; @include box-sizing(border-box);
+    & h2 {
+      @include fluid-type(16px, 28px, 320px, 1216px); margin: 0 0 20px; padding: 0; text-align: center; text-transform: uppercase; color: $c5; outline: 0!important; font-family: $monsemi!important;
+    }
+  }
+}

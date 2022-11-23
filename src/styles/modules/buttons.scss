@@ -1,0 +1,196 @@
+/* ==|====================
+   Modules/Buttons
+   ======================= */
+.btnSlideProd {
+  width: 32px; height: 32px; border: none; outline: 0; display: block; padding: 0; margin: 0; cursor: pointer; @include transition(all 0.23s); @include position(absolute, 50% null null null); line-height: 32px; text-align: center; @include transform(translateY(-50%)); background-color: $col1; color: $c5; @include fluid-type(16px, 22px, 320px, 1216px);
+  &:before {
+    font-family: 'LineIcons';
+  }
+  &.bLeftP {
+    left: 0;
+    &:before {
+      content: '\ea5a';
+    }
+  }
+  &.nRightP {
+    right: 0;
+    &:before {
+      content: '\ea5c';
+    }
+  }
+  &.slick-disabled {
+    display: none; opacity: 0;
+  }
+  @media all and (min-width: 768px) {
+    width: 40px; height: 40px; line-height: 40px;
+  }
+  @media all and (min-width: 992px) {
+    opacity: 0;
+  }
+  @media all and (min-width: 1216px) {
+    width: 45px; height: 45px; line-height: 45px;
+  }
+}
+// .btnsGenericos {
+//   width: auto; height: 40px; margin: 0 0 0 0; text-align: center; color: $white; border: 1px solid $white; @include box-sizing(border-box); line-height: 40px; font-size: rem(13px); cursor: pointer; background-color: transparent; outline: 0; letter-spacing: 1.14px;
+//   &:hover {
+//     box-shadow:0px 10px 10px rgba(0,0,0,0.2); @include transform(translateY(-3px)); color: $c4; background: $white;
+//   }
+//   &:link, &:visited {
+//     text-decoration: none; text-transform:uppercase; position:relative; top:0; left:0; padding:0 30px; border-radius: 20px; display:inline-block; @include transition(all .5s)
+//   }
+//   &:active{
+//     box-shadow:0px 5px 10px rgba(0,0,0,0.2); @include transform(translateY(-1px));
+//   }
+//   &:after {
+//     content:""; text-decoration: none; text-transform:uppercase; position:absolute; width:100%; height:100%; top:0; left:0; border-radius:100px; display:inline-block; z-index:-1; @include transition(all .5s); background: transparent;
+//   }
+//   &.ani-btn {
+//     @include animation(comeFromBottom 1s ease-out .8);
+//     &:hover {
+//       &:after {
+//         opacity: 0; @include transform(scaleX(1.4) scaleY(1.6)); background-color: $white;
+//       }
+//     }
+//   }
+// }
+// @include keyframes(comeFromBottom) {
+//   0% {
+//     opacity:0; @include transform(translateY(40px));
+//   } 
+//   100% {
+//     opacity:1; @include transform(translateY(0));
+//   }
+// }
+#button {
+  display: inline-block; background-color: $c4; width: 35px; height: 35px; text-align: center; border-radius: 35px; position: fixed; bottom: 5px; left: 50%; visibility: hidden; z-index: 1000; @include transform(translateX(-50%)); @include transition(background-color .3s, opacity .5s, visibility .5s); opacity: 0;
+  &:after {
+    content: "\f077"; font-family: 'fontAwesome'; font-weight: normal; font-style: normal; font-size: 1em; line-height: 35px; color: #fff;
+  }
+  &:hover {
+    cursor: pointer; background-color: $col1;
+  }
+  &:active {
+    background-color: $col1;
+  }
+  &.show {
+    opacity: 1; visibility: visible;
+  }
+}
+
+// Animated Social Button
+.btnSocial {
+  display: block; width: 35px; height: 35px; font-size: rem(18px); @include transition(all 0.23s ease); background-color: $col6; line-height: 35px; text-align: center; position: relative; overflow: hidden; margin: 0; box-shadow: 0;
+  &:before, &:after {
+    font-family: 'LineIcons'; @include position(absolute, 0 null null 0); width: 100%; height: 100%; color: $col1; @include transition(transform 300ms ease-in-out, all 0.25s);
+  }
+  &:before { @include transform(translateY(-100%)); }
+  &:after { @include transform(translateY(0)); }
+  &:hover {
+    background-color: $col4;
+    &:before, &:after { color: $col1; }
+    &:before { @include transform(translateY(0)); }
+    &:after { @include transform(translateY(100%)); }
+  }
+  &__tni {
+    &--whatsapp { &:before, &:after { content: '\ebf1'; } }
+    &--facebook { &:before, &:after { content: '\eab6'; } }
+    &--twitter { &:before, &:after { content: '\ebd8'; } }
+    &--instagram { &:before, &:after { content: '\eaf3'; } }
+    &--youtube { &:before, &:after { content: '\ebfd'; } }
+    &--vimeo { &:before, &:after { content: '\ebe3'; } }
+    &--linkedin { &:before, &:after { content: '\eb15'; } }
+    &--pinterest { &:before, &:after { content: '\eb4d'; } }
+  }
+  &.rounded {
+    @include border-top-radius(6px); @include border-bottom-radius(6px);
+  }
+  &.circle {
+    @include border-top-radius(50%); @include border-bottom-radius(50%);
+  }
+  @media all and (min-width: 769px) {
+    width: 40px; height: 40px; font-size: rem(20px); line-height: 40px;
+  }
+  @media all and (min-width: 1024px) {
+    width: 45px; height: 45px; font-size: rem(22px); line-height: 45px;
+  }
+  @media all and (min-width: 1216px) {
+    width: 50px; height: 50px; font-size: rem(25px); line-height: 50px;
+  }
+}
+
+// News buttons
+.btnpr {
+  height: 40px; display: inline-flex; position: relative; overflow: hidden; color: $col1; font-size: rem(11px); text-decoration: none; border-radius: 0; -webkit-border-radius: 0; text-transform: uppercase; @include box-sizing(border-box); box-shadow: none; text-align: center; line-height: 40px; padding: 0 20px; margin: 0 0 20px; @include transition(all 300ms); cursor: pointer; font-family: $monbold; outline: none;
+  &__primary {
+    width: 220px;
+    span {
+      @include position(absolute, 50% null null 0); @include transform(translate(0, -50%)); width: 100%; height: auto; letter-spacing: 0.85px; margin: 0; padding: 0; @include transition(transform 300ms);
+    }
+    i {
+      width: 30px; height: 40px; z-index: 1; @include position(absolute, 50% 5px null null); @include transform(translate(100%, -50%)); font-size: rem(20px); @include transition(transform 300ms); line-height: 40px; text-align: center;
+    }
+    &:hover {
+      color: $col1!important;
+      span {
+        @include transform(translate(-7%, -50%));
+      }
+      i {
+        @include transform(translate(0, -50%));
+      }
+    }
+    &--border {
+      background: $col6; color: $col1; border: 1px solid $col1;
+      &:hover {
+        background: $col5; color: $col1;
+      }
+    }
+    &--borderBlack {
+      background: $c5!important; color: $col1!important; border: 1px solid $c5!important;
+      &:hover {
+        background: $c4!important; color: $col1!important;
+      }
+    }
+    &--borderLight {
+      background: $col3; color: $col6; border: 1px solid $col4;
+      &:hover {
+        background: $col4; color: $col1;
+      }
+    }
+    &--outline {
+      background: $col1!important; color: $col5!important; border: 1px solid $col6!important;
+      &:hover {
+        background: $col6!important; color: $white!important;
+      }
+    }
+  }
+  &.disabled {
+    pointer-events: none!important; opacity: 0.85; cursor: none;
+  }
+  @media all and (min-width: 992px) {
+    height: 46px; font-size: rem(13px); line-height: 46px; padding: 0 30px; margin: 0 0 20px;
+    &__primary {
+      width: 220px;
+    }
+  }
+}
+
+// Paginador button
+.page-link {
+  padding: 0; border: none; margin: 0; background-color: transparent!important; width: 25px; height: 25px; text-align: center; background-position: center; background-repeat: no-repeat; background-size: 100%; line-height: 25px; text-decoration: none; color: $col6;  font-size: rem(14px); @include transition(all 300ms);
+  &.page--prev {
+    background-image: url('#{$imgR}icons/control_left_rosa-01.svg'); text-indent: -9999px; font-size: 0;
+  }
+  &.page--next {
+    background-image: url('#{$imgR}icons/control_right_rosa-01.svg'); text-indent: -9999px; font-size: 0;
+  }
+  &.active {
+    background-image: url('#{$imgR}icons/bg_engrane-01.svg'); color: $white;
+    &:hover {
+      color: $white;
+    }
+  }
+  &:hover {
+    color: $col1;
+  }
+}

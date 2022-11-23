@@ -1,0 +1,243 @@
+{% include 'search-drawer' %}
+
+<div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
+{% if request.page_type == 'index' %}
+  <div id="blockhh" class="head-block"></div>
+  <div id="headerGeneral" class="headerFix">
+{% else %}
+  <div>
+{% endif %}
+    {% if section.settings.message %}
+      {% if section.settings.home_page_only == false or request.page_type == 'index' %}
+
+        <div id="annAlt" class="announcement-bar" role="region" aria-label="{{ 'sections.header.announcement_bar_label' | t }}">
+          {%- unless section.settings.message_link == blank -%}
+            <a href="{{ section.settings.message_link }}" class="announcement-bar__link">
+          {%- endunless -%}
+              <p class="announcement-bar__message">{{ section.settings.message_text | escape }}</p>
+          {%- unless section.settings.message_link == blank -%}
+            </a>
+          {%- endunless -%}
+        </div>
+
+      {% endif %}
+    {% endif %}
+    <header class="g-header">
+      <div class="logo-content">
+  {% if request.page_type == 'index' %}
+        <h1 class="site-logo">
+  {% else %}
+        <div class="site-logo">
+  {% endif %}
+    {% if section.settings.logo %}
+      {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <a href="{{ routes.root_url }}" data-image-loading-animation>
+      {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+            <img class="lazyload js"
+                src="{{ section.settings.logo | img_url: '300x300' }}"
+                data-src="{{ img_url }}"
+                data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ logo_alt | escape }}">
+          </a>
+    {% else %}
+          <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
+    {% endif %}
+  {% if request.page_type == 'index' %}
+        </h1>
+  {% else %}
+        </div>
+  {% endif %}
+
+        <div class="toolsHead">
+          <ul class="controlsHead">
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <li class="controlsHead__item">
+              <a class="controlsHead__link controlsHead__link--users" href="{{ routes.account_url }}" data-text="{{ 'layout.customer.account' | t }}">{% include 'icon-login' %}</a>
+            </li>
+          {% else %}
+            <li class="controlsHead__item">
+              <a class="controlsHead__link controlsHead__link--users" href="{{ routes.account_login_url }}" data-text="{{ 'layout.customer.log_in' | t }}">{% include 'icon-login' %}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+            <li class="controlsHead__item">
+              <button type="button" class="controlsHead__link controlsHead__link--users js-drawer-open-top" data-predictive-search-open-drawer>{% include 'icon-search' %}</button>
+            </li>
+            <li class="controlsHead__item">
+              <a class="controlsHead__link controlsHead__link--carrito{% if cart.item_count == 0 %} hideCount{% endif %}" href="{{ routes.cart_url }}" data-cart-count-bubble>
+                {% include 'icon-cart' %}
+                <span data-cart-count>{{ cart.item_count }}</span>
+              </a>
+            </li>
+        {% unless linklists[section.settings.main_linklist] == blank %}
+            <li class="controlsHead__item">
+              <a id="openMenuMobile" class="controlsHead__link controlsHead__link--menuMobile" href="#" data-menu-expand="false">
+                <span></span>
+              </a>
+            </li>
+        {% endunless %}
+          </ul>
+        </div>
+      </div>
+      <div class="menuMain">
+        <nav class="menuDesk">
+          {% include 'site-nav', linklist: section.settings.main_linklist %}
+        </nav>
+      </div>
+    </header>
+  </div>
+</div>
+
+<!-- MenuMobile -->
+<div id="mm" class="cont-menu-mobile" data-menu-expand="false">
+  <div id="contListMenu" class="mnuContMob">
+
+  </div>
+  <div class="socHead">
+    <ul>
+      <li><a class="tyi-facebook" href="" target="_blank"></a></li>
+      <li><a class="tyi-instagram" href="" target="_blank"></a></li>
+    </ul>
+  </div>
+</div>
+<!-- end.MenuMobile -->
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
+  {% endif %}
+  "sameAs": [
+    {{ settings.social_twitter_link | json }},
+    {{ settings.social_facebook_link | json }},
+    {{ settings.social_pinterest_link | json }},
+    {{ settings.social_instagram_link | json }},
+    {{ settings.social_tumblr_link | json }},
+    {{ settings.social_snapchat_link | json }},
+    {{ settings.social_youtube_link | json }},
+    {{ settings.social_vimeo_link | json }}
+  ],
+  "url": {{ shop.url | append: page.url | json }}
+}
+</script>
+
+{% if request.page_type == 'index' %}
+  {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ shop.url | append: page.url | json }}
+    }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": {
+    "en": "Header",
+    "es": "Encabezado"
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": {
+        "en": "Logo image",
+        "es": "Logo"
+      }
+    },
+    {
+      "type": "link_list",
+      "id": "main_linklist",
+      "label": {
+        "en": "Menu",
+        "es": "Menú"
+      },
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": {
+        "en": "Announcement bar",
+        "es": "Barra de anuncios"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "message",
+      "label": {
+        "en": "Show announcement",
+        "es": "Mostrar anuncio"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "home_page_only",
+      "label": {
+        "en": "Home page only",
+        "es": "Solo página de inicio"
+      },
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "message_text",
+      "label": {
+        "en": "Text",
+        "es": "Texto"
+      },
+      "default": {
+        "en": "Announce something here",
+        "es": "Anuncia algo aquí"
+      }
+    },
+    {
+      "type": "url",
+      "id": "message_link",
+      "label": {
+        "en": "Link",
+        "es": "Enlace"
+      },
+      "info": {
+        "en": "Optional",
+        "es": "Opcional"
+      }
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": {
+        "en": "Bar",
+        "es": "Barra"
+      },
+      "default": "#3a3a3a"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": {
+        "en": "Text",
+        "es": "Texto"
+      },
+      "default": "#ffffff"
+    }
+  ]
+}
+{% endschema %}

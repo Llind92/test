@@ -1,0 +1,87 @@
+// Icons Promodromo
+[data-pricon]:before {
+  font-family: "iconsPromo" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="pricon-"]:before,
+[class*=" pricon-"]:before {
+  font-family: "iconsPromo" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  speak: never;
+  display: inline-block;
+  text-decoration: inherit;
+  text-align: center;
+}
+.pricon  {
+  font-size: inherit; vertical-align: baseline;
+}
+
+.pricon-config:before { content: '\e800'; } /* '' */
+.pricon-cup:before { content: '\e801'; } /* '' */
+.pricon-destacados:before { content: '\e802'; } /* '' */
+.pricon-grid:before { content: '\e803'; } /* '' */
+.pricon-home:before { content: '\e804'; } /* '' */
+.pricon-like:before { content: '\e805'; } /* '' */
+.pricon-login:before { content: '\e806'; } /* '' */
+.pricon-logout:before { content: '\e807'; } /* '' */
+.pricon-love:before { content: '\e808'; } /* '' */
+.pricon-mail:before { content: '\e809'; } /* '' */
+.pricon-market:before { content: '\e80a'; } /* '' */
+.pricon-medal:before { content: '\e80b'; } /* '' */
+.pricon-nolike:before { content: '\e80c'; } /* '' */
+.pricon-pending:before { content: '\e80d'; } /* '' */
+.pricon-pin:before { content: '\e80e'; } /* '' */
+.pricon-recientes:before { content: '\e80f'; } /* '' */
+.pricon-share:before { content: '\e810'; } /* '' */
+.pricon-user:before { content: '\e811'; } /* '' */
+.pricon-world:before { content: '\e812'; } /* '' */
+.pricon-bg_engrane:before { content: '\e813'; } /* '' */
+.pricon-abarrotes:before { content: '\e814'; } /* '' */
+.pricon-automotriz:before { content: '\e815'; } /* '' */
+.pricon-bebes-y-ninos:before { content: '\e816'; } /* '' */
+.pricon-deportes:before { content: '\e817'; } /* '' */
+.pricon-hogar:before { content: '\e818'; } /* '' */
+.pricon-libros:before { content: '\e819'; } /* '' */
+.pricon-ropa-y-accesorios:before { content: '\e81a'; } /* '' */
+.pricon-salud-y-belleza:before { content: '\e836'; } /* '' */
+.pricon-servicios:before { content: '\e81c'; } /* '' */
+.pricon-tecnologia:before { content: '\e81d'; } /* '' */
+.pricon-viajes:before { content: '\e81e'; } /* '' */
+.pricon-videojuegos:before { content: '\e81f'; } /* '' */
+.pricon-aliexpress:before { content: '\e820'; } /* '' */
+.pricon-amazon:before { content: '\e821'; } /* '' */
+.pricon-best-buy:before { content: '\e822'; } /* '' */
+.pricon-cinemex:before { content: '\e823'; } /* '' */
+.pricon-cinepolis:before { content: '\e824'; } /* '' */
+.pricon-claro-shop:before { content: '\e825'; } /* '' */
+.pricon-coppel:before { content: '\e826'; } /* '' */
+.pricon-costco:before { content: '\e827'; } /* '' */
+.pricon-ebay:before { content: '\e828'; } /* '' */
+.pricon-elektra:before { content: '\e829'; } /* '' */
+.pricon-innova:before { content: '\e82a'; } /* '' */
+.pricon-lenovo:before { content: '\e82b'; } /* '' */
+.pricon-linio:before { content: '\e82c'; } /* '' */
+.pricon-liverpool:before { content: '\e82d'; } /* '' */
+.pricon-mercado-libre:before { content: '\e82e'; } /* '' */
+.pricon-nike:before { content: '\e82f'; } /* '' */
+.pricon-oxxo:before { content: '\e830'; } /* '' */
+.pricon-privalia:before { content: '\e831'; } /* '' */
+.pricon-sanborns:before { content: '\e832'; } /* '' */
+.pricon-shein:before { content: '\e833'; } /* '' */
+.pricon-telcel:before { content: '\e834'; } /* '' */
+.pricon-wish:before { content: '\e835'; } /* '' */

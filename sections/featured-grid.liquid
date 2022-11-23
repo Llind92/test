@@ -1,0 +1,161 @@
+<section data-section-id="{{ section.id }}" data-section-type="featured-grid-section">
+  <div class="containerGridFeatured">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-full">
+          <div class="dividerFeatured">
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-full">
+{%- if section.blocks.size > 0 -%}
+          <div class="gridFeatured">
+{% for block in section.blocks %}
+            <figure class="figPromoHome">
+            {% if block.settings.image != blank %}
+              {% capture img_id %}gridImageBox-{{ section.id }}{% endcapture %}
+              {% capture wrapper_id %}gridImageBoxWr-{{ section.id }}{% endcapture %}
+              {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+              <div id="{{ wrapper_id }}" class="figPromoHome__img js" data-image-loading-animatio>
+                <img id="{{ img_id }}"
+                  class="feature-row__image lazyload"
+                  data-src="{{ img_url }}"
+                  data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                  data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                  data-sizes="auto"
+                  alt="{{ block.settings.image.alt | escape }}">
+              </div>
+              <noscript>
+                {{ block.settings.image | img_url: '600x600', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+              </noscript>
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+            {%- unless block.settings.subheading == blank -%}
+              <figcaption class="figPromoHome__cap colorTextBox" style="color: {{ block.settings.color_text }};">
+                {{ block.settings.subheading }}
+              </figcaption>
+            {%- endunless -%}
+              <div class="overlayBoxPromo"></div>
+            {%- assign show_link_button = false -%}
+            {%- if block.settings.button_link != blank -%}
+              {%- assign show_link_button = true -%}
+            {%- endif -%}
+            {%- if show_link_button -%}
+              <a href="{{ block.settings.button_link }}" class="btnOverGrid"></a>
+            {%- endif -%}
+            </figure>
+{%- endfor -%}
+          </div>
+{%- endif -%}
+
+{% if section.blocks.size == 0 %}
+  <div class="placeholder-noblocks">
+    {{ 'homepage.onboarding.no_content' | t }}
+  </div>
+{% endif %}
+        </div><!-- end.fullColumn -->
+      </div><!-- end.columns -->
+    </div><!-- end.container -->
+  </div><!-- end.containerFeatured -->
+</section>
+
+{% schema %}
+{
+  "name": {
+    "en": "Grid Box",
+    "es": "Grilla de Caja"
+  },
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": {
+        "en": "Heading",
+        "es": "Título"
+      },
+      "default": {
+        "en": "Text columns with images",
+        "es": "Columnas de texto con imágenes"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": {
+        "en": "Image Box",
+        "es": "Imagen de Caja"
+      },
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": {
+            "en": "Image",
+            "es": "Imagen"
+          }
+        },
+        {
+          "type": "richtext",
+          "id": "subheading",
+          "label": {
+            "en": "Subheading",
+            "es": "Subtítulo"
+          },
+          "default": {
+            "en": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "es": "<p>Usa este texto para compartir información sobre tu marca con tus clientes. Describe un producto, comparte anuncios o recibe clientes en tu tienda.</p>"
+          }
+        },
+        {
+          "type": "color",
+          "id": "color_text",
+          "label": {
+            "en": "Text",
+            "es": "Texto"
+          },
+          "default": "#FDF8F7"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": {
+            "en": "Button link",
+            "es": "Enlace de imagen"
+          }
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "Grid with text and image",
+        "es": "Grilla con texto e imagen"
+      },
+      "category": {
+        "en": "Image",
+        "es": "Imagen"
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
