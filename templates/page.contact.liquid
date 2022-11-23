@@ -1,113 +1,14 @@
-<section class="contactSection">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-full">
-        <div class="collectionHeader">
-          <div class="collectionHeader__title">
-            <h1>{{ page.title }}</h1>
-          {% if page.content.size > 0 %}
-            <div class="rte">
-              {{ page.content }}
-            </div>
-          {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-full is-four-fifths-tablet">
-        <div class="contformulario">
-      {%- assign formId = 'ContactForm' -%}
-      {% form 'contact', id: formId %}
-        {% include 'form-status', form: form, form_id: formId %}
-          <div class="field is-horizontal">
-            <div class="field-body">
-              <div class="field is-expanded">
-                <div class="animatedField">
-                  <input type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" required>
-                  <label for="{{ formId }}-name">Nombre completo*</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="field is-horizontal">
-
-            <div class="field-body">
-              <div class="field">
-                <div class="control is-expanded">
-                  <div class="animatedField">   
-                    <input
-                    type="email"
-                    id="{{ formId }}-email"
-                    name="contact[email]"
-                    autocorrect="off"
-                    autocapitalize="off"
-                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                    aria-required="true"
-                    required
-                    {%- if form.errors contains 'email' -%}
-                      class="input--error"
-                      aria-invalid="true"
-                      aria-describedby="{{ formId }}-email-error"
-                    {%- endif -%}
-                    >
-                    <label for="{{ formId }}-email">Correo electrónico*</label>
-                  </div>
-                {%- if form.errors contains 'email' -%}
-                  <span id="{{ formId}}-email-error" class="input-error-message">
-                    <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                    {% include 'icon-error' %}
-                    <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-                  </span>
-                {%- endif -%}
-                </div>
-              </div>
-              <div class="field">
-                <div class="control is-expanded">
-                  <div class="animatedField">
-                    <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" required>
-                    <label for="{{ formId }}-phone">Teléfono:</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="field is-horizontal">
-            <div class="field-body">
-              <div class="field is-expanded">
-                <div class="control">
-                  <div class="animatedTextArea">
-                    <textarea rows="5" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
-                    <label for="{{ formId }}-message">Mensaje:</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="field is-horizontal">
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <!-- <div class="checkCustom">
-                    <input
-                      type="checkbox"
-                      class="CheckStyle"
-                      id="{{ formId }}-acepto"
-                      name="contact[acepto]"
-                      aria-required="true"
-                      value="Acepto"
-                    >
-                    <label for="{{ formId }}-acepto">He leído y acepto el <a href="">Aviso de Privacidad</a></label>
-                  </div> -->
-                  <button type="submit" value="{{ 'contact.form.submit' | t }}" class="btnpr btnpr__primary btnpr__primary--border"><span>Enviar</span><i class="lni lni-chevron-right"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-      {% endform %}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<h1>{{ page.title }}</h1>
+{% form 'contact' %}
+  {% if form.posted_successfully? %} Thank you for your contact {% endif %}
+  {{ form.errors | default_errors }}
+  <label for="ContactFormName">name</label>
+  <input type="text" id="ContactFormName" name="contact[name]">
+  <label for="ContactFormEmail">email</label>
+  <input type="email" id="ContactFormEmail" name="contact[email]">
+  <label for="ContactFormPhone">phone</label>
+  <input type="tel" id="ContactFormPhone" name="contact[phone]">
+  <label for="ContactFormMessage">message</label>
+  <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
+  <input type="submit" value="send">
+{% endform %}

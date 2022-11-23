@@ -1,91 +1,22 @@
 {% paginate search.results by 10 %}
+  <form action="/search" method="get" role="search">
+    <input type="search" name="q" value="{{ search.terms | escape }}">
+    <button type="submit">search</button>
+  </form>
 
-<section class="pageGeneric">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-full is-four-fifths-tablet">
-      {% if search.performed == false %}
-        <div class="collectionHeader">
-          <div class="collectionHeader__title">
-            <h1>{{ page.title }}</h1>
-      {% else %}
-        <div class="collectionHeader">
-          <div class="collectionHeader__title">
-            <h1>
-              <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
-              {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-            </h1>
+  {% if search.performed %}
+    {% for item in search.results %}
+      {% if item.featured_image %}
+        <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
+          {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
+        </a>
       {% endif %}
-          {% if search.performed and search.results_count == 0 %}
-            <div class="rte">
-              <p>{{ 'general.search.no_results' | t }}</p>
-            </div>
-          {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div class="formNewsletterFooter">
-          <form action="{{ routes.search_url }}" method="get" role="search" class="search-form search-page-form">
-            <div class="formContFlex">
-              <div class="animatedField">
-                <input
-                  type="search"
-                  id="inputSearch"
-                  name="q"
-                  value="{{ search.terms | escape }}"
-                  placeholder="{{ 'general.search.placeholder' | t }}"
-                  role="combobox"
-                  aria-autocomplete="list"
-                  aria-owns="predictive-search-results"
-                  aria-expanded="false"
-                  aria-label="{{ 'general.search.placeholder' | t }}"
-                  aria-haspopup="listbox"
-                  data-search-page-predictive-search-input
-                />
+      <h5>{{ item.title | link_to: item.url }}</h5>
+      <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+    {% else %}
+      no results
+    {% endfor %}
+  {% endif %}
 
-                <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
-                <label for="inputSearch">Buscar</label>
-              </div>
-              <button type="submit" class="btn newsletter__submit" aria-label="{{ 'general.search.submit' | t }}" data-search-page-predictive-search-submit>
-                {% include 'icon-search' %}
-              </button>
-
-              <div class="predictive-search-wrapper" data-predictive-search-mount="default"></div>
-            </div><!-- end.formContFlex -->
-          </form>
-        </div>
-      </div>
-    </div>
-
-{% if search.performed %}
-  <div class="columns">
-    <div class="column is-full" id="Collection">
-      <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
-      <div class="contListCollection">
-
-        <ul class="grid grid--uniform{% if search.results_count > 0 %} grid--view-items{% endif %} centerList">
-          {% for item in search.results %}
-            <li class="grid__item grid__item--buscador small--one-half medium-up--one-quarter">
-              {% include 'product-card-grid', product: item %}
-            </li>
-          {% endfor %}
-        </ul>
-        <hr>
-      </div>
-    </div>
-  </div>
-  {%- if paginate.pages > 1 -%}
-  <div class="columns">
-    <div class="column is-full">
-      {% include 'pagination', paginate: paginate %}
-    </div>
-  </div>
-  {%- endif -%}
-{% endif %}
-  </div>
-</section>
-
+  {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
 {% endpaginate %}

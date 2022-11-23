@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../sass/application.scss"
+    ],
+    "names": [],
+    "file": "application.css"
+}

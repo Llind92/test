@@ -1,0 +1,34 @@
+<div class="product-card"> <!-- Product card div -->
+
+  <div class="card-info">
+    <a href="{{ product.url }}">{{ product.title }} <!-- product title -->
+      <span class="price">{{ product.price | money_without_trailing_zeros }}</span> <!-- product amount-->
+    </a>
+  
+    <p>{{ product.description | strip_html | split: '.' | first | append: '.' }}</p><!-- Product decription value * -->
+  
+    {% if product.variants.size > 1 %} <!-- option variant amount if statement -->
+      {{ 'product.card.options' | t: optionCount: product.variants.size }} &mdash; 
+    {% endif %}
+  
+    {% if product.available %} <!-- if available if statement-->
+      <a href="{{ product.url }}">{{ 'product.card.more_info' | t }}</a> <!-- more info link -->
+    {% else %}
+      {{ 'product.card.sold_out' | t }}
+    {% endif %}
+  </div>
+
+  <div class="card-image"> <!-- Product image container -->
+    <a href="{{ product.url }}">
+      <img src="{{ product.featured_image.src | img_url: '1200x900', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" /> 
+      <!-- product image with crop property "crop: 'center' " -->
+    </a>
+  </div>
+
+</div>
+
+
+<!-- 
+    Product Description Value
+    * Strip filter removes extra stuff to basic HTML, Split creates an array after each period, first grabs the first array item and append adds a period to the array.
+-->
