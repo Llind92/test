@@ -1,0 +1,142 @@
+{% include 'breadcrumbs' %}
+
+{% style %}
+  .register-page-title {
+    font-size: 40px;
+    font-family: AvenirNext;
+    color: #949494;
+    font-weight: normal;
+    margin: 20px auto;
+    padding-bottom: 25px;
+    line-height: 1.1;
+    text-align: center;
+  }
+  #RegisterForm input[type=submit] {
+    width: auto;
+    padding: 12px;
+    border: solid 1px #e89cae;
+    background: #e89cae;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    display: block;
+    border-radius: 5px;
+    text-transform: uppercase;
+    overflow: hidden;
+    height: 38px;
+    font: 14px Arial, Helvetica, sans-serif;
+    vertical-align: middle;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  #RegisterForm input[type=submit]:hover {
+    color: #e89cae;
+    background: #fff;
+  }
+{% endstyle %}
+
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
+
+      <div class="form-vertical">
+
+        <h1 class="text-center register-page-title">{{ 'customer.register.title' | t }}</h1>
+
+        {%- assign formId = 'RegisterForm' -%}
+        {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
+          {% include 'form-status', form: form, form_id: formId %}
+
+          <label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}</label>
+          <input type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name">
+
+          <label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}</label>
+          <input type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name">
+
+          <label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="{{ formId }}-email"
+            class="{% if form.errors contains 'email' %} input--error{% endif %}"
+            {% if form.email %} value="{{ form.email }}"{% endif %}
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            aria-required="true"
+            {%- if form.errors contains 'email' -%}
+              class="input--error"
+              aria-invalid="true"
+              aria-describedby="{{ formId }}-email-error"
+            {%- endif -%}
+          >
+          {%- if form.errors contains 'email' -%}
+            <span id="{{ formId }}-email-error" class="input-error-message">
+              <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+              {% include 'icon-error' %}
+              <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+            </span>
+          {%- endif -%}
+ <label for="Birthdate">Your Birthday</label>
+          <input type="text" maxlength="5" pattern="\d{1,2}/\d{1,2}" id="birthday" class="js-date--west" name="customer[note][birthdate]" aria-label="Birthday" placeholder="Birthday: mm/dd" title="birthday">
+  
+          <label for="{{ formId }}-password">{{ 'customer.register.password' | t }}</label>
+          <input
+            type="password"
+            name="customer[password]"
+            id="{{ formId }}-password"
+            class="{% if form.errors contains 'password' %} input--error{% endif %}"
+            aria-required="true"
+            {%- if form.errors contains 'password' -%}
+              class="input--error"
+              aria-invalid="true"
+              aria-describedby="{{ formId }}-password-error"
+            {%- endif -%}
+          >
+          {%- if form.errors contains 'password' -%}
+            <span id="{{ formId}}-password-error" class="input-error-message">
+              {% include 'icon-error' %}
+              <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
+            </span>
+          {%- endif -%}
+
+          <p class="text-center">
+            <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+          </p>
+
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+<script type="text/javascript">
+ 
+  var date = document.getElementById('birthday');
+
+function checkValue(str, max) {
+  if (str.charAt(0) !== '0' || str == '00') {
+    var num = parseInt(str);
+    if (isNaN(num) || num <= 0 || num > max) num = 1;
+    str = num > parseInt(max.toString().charAt(0)) && num.toString().length == 1 ? '0' + num : num.toString();
+  };
+  return str;
+};
+
+date.addEventListener('input', function(e) {
+  this.type = 'text';
+  var input = this.value;
+  if (/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
+  var values = input.split('/').map(function(v) {
+    return v.replace(/\D/g, '')
+  });
+  if (values[0]) values[0] = checkValue(values[0], 12);
+  if (values[1]) values[1] = checkValue(values[1], 31);
+  var output = values.map(function(v, i) {
+    return v.length == 2 && i < 1 ? v + '/' : v;
+  });
+  this.value = output.join('').substr(0, 14);
+});
+</script>
