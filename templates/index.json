@@ -33,7 +33,7 @@
         "button"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/DSC00940-Enhanced_1.jpg",
+        "image": "shopify:\/\/shop_images\/natural-skin-care-herbivore-botanicals-instagram.webp",
         "desktop_text_box_position": "flex-start",
         "color_scheme": "inverse",
         "stack_images_on_mobile": true,
@@ -69,7 +69,6 @@
         "button"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/landing-bodycare.jpg",
         "show_border": true,
         "height": "adapt",
         "color_scheme": "background-1",
@@ -105,7 +104,6 @@
         "163364166408328aa9-2"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/pexels-oziel-gomez-7529416-resized_c0729c37-92e3-487a-9dd5-097adf4c21be.jpg",
         "show_border": true,
         "height": "adapt",
         "color_scheme": "background-1",
@@ -118,7 +116,6 @@
         "163364185250b6e359-0": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/hands-lathered-in-hand-cream-against-beige-background.jpg",
             "title": "Organic",
             "text": "<p>We source only from sustainable and organic growers. Because we would never put anything in our products that we wouldn't want in our bodies.<\/p>"
           }
@@ -126,7 +123,6 @@
         "163364185250b6e359-1": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/pexels-skylar-kang-6045480.jpg",
             "title": "Vegan",
             "text": "<p>All ingredients we use are vegan certified and done so with care to the environment, making sure to only use what the earth can give back.<\/p>"
           }
@@ -134,7 +130,6 @@
         "163364185250b6e359-2": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/pexels-rfstudio-3621234.jpg",
             "title": "Sustainable",
             "text": "<p>Our products are free from nasty and harmful petrochemicals, SLS and all artificial preservatives, never tested on animals or harmful to our planet.<\/p>"
           }

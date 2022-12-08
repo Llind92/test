@@ -3,8 +3,8 @@
     "colors_accent_1": "#000000",
     "colors_accent_2": "#313131",
     "colors_text": "#000000",
-    "colors_background_1": "#f5f5ee",
-    "colors_background_2": "#edebdd",
+    "colors_background_1": "#fffdf4",
+    "colors_background_2": "#fffbe7",
     "type_header_font": "assistant_n3",
     "type_body_font": "assistant_n4",
     "page_width": "1600",
@@ -16,9 +16,9 @@
           "announcement-bar-0": {
             "type": "announcement",
             "settings": {
-              "heading": "Enjoy free delivery on all orders over £100",
+              "heading": "Welcome to Eternals Beauty",
               "color_scheme": "background-2",
-              "link": "shopify:\/\/collections\/shop"
+              "link": ""
             }
           }
         },
@@ -31,11 +31,10 @@
       "header": {
         "type": "header",
         "settings": {
-          "logo": "shopify:\/\/shop_images\/SLKE-logo-500.png",
           "logo_width": 70,
-          "logo_position": "middle-left",
+          "logo_position": "top-center",
           "menu": "main-menu",
-          "menu-right": "top-right",
+          "menu-right": "",
           "show_line_separator": false,
           "enable_sticky_header": true
         }
@@ -54,14 +53,14 @@
             "type": "link_list",
             "settings": {
               "heading": "Support",
-              "menu": "footer-support"
+              "menu": ""
             }
           },
           "98ce7115-36dd-4e2e-a09f-faeac96e9c6f": {
             "type": "link_list",
             "settings": {
               "heading": "Follow",
-              "menu": "footer-follow"
+              "menu": ""
             }
           }
         },
