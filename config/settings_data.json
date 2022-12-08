@@ -57,14 +57,13 @@
         "settings": {
           "align_logo": "center",
           "content": "Get Color Pass",
-          "logo": "shopify:\/\/shop_images\/orly-logo-v.png",
           "logo_max_width": 145,
-          "main_linklist": "multi-level-sidebar-menu",
+          "main_linklist": "",
           "message": false,
           "home_page_only": false,
-          "message_text": "20% Off Sitewide! Code: TAKE20",
-          "message_link": "http:\/\/orlybeauty.com",
-          "color_bg": "#e9b9ae",
+          "message_text": "",
+          "message_link": "http:\/\/EternalsB-SJ.com",
+          "color_bg": "#fff3ce",
           "color_text": "#ffffff"
         }
       },
@@ -83,10 +82,10 @@
       "footer": {
         "type": "footer",
         "settings": {
-          "footer_linklist": "shop-footer",
-          "footer_linklist_two": "professionals",
-          "footer_linklist_three": "company",
-          "footer_linklist_four": "connect",
+          "footer_linklist": "",
+          "footer_linklist_two": "",
+          "footer_linklist_three": "",
+          "footer_linklist_four": "",
           "footer_newsletter_enable": false,
           "show_payment_icons": false
         }
