@@ -1,0 +1,132 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+          }
+        },
+        "e68af848-aef5-4ab8-9d7f-150a89c10004": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Ingredients",
+            "content": "",
+            "page": "",
+            "icon": "check_mark"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variant_picker",
+        "description",
+        "e68af848-aef5-4ab8-9d7f-150a89c10004",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "enable_video_looping": false
+      }
+    },
+    "16356421685b5cf995": {
+      "type": "ingredients-block",
+      "blocks": {
+        "16356421685b5cf995-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Scent"
+          }
+        },
+        "16356421685b5cf995-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>##scent##<\/p>"
+          }
+        },
+        "4b982cd8-4795-49a3-888d-3aea7cbbe481": {
+          "type": "heading",
+          "settings": {
+            "heading": "How To Use"
+          }
+        },
+        "60b8e12c-3578-4a40-98a3-809fb3d4e9f2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Twice-weekly massage the scrub all over your body for a few minutes, focusing particularly on areas that want more attention (eg. Scars, cellulite, stretch marks, breakouts, dry areas). Rinse with warm water and pat dry.<\/p>"
+          }
+        },
+        "6b28add6-dd81-448a-a510-c747590db413": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Promise"
+          }
+        },
+        "e28bf7eb-068c-4ce4-aa4c-a23b03edbd01": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Everything we create at SLKÉ is always free from petrochemicals, SLS or artificial preservatives, and is never tested on animals.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "16356421685b5cf995-0",
+        "16356421685b5cf995-1",
+        "4b982cd8-4795-49a3-888d-3aea7cbbe481",
+        "60b8e12c-3578-4a40-98a3-809fb3d4e9f2",
+        "6b28add6-dd81-448a-a510-c747590db413",
+        "e28bf7eb-068c-4ce4-aa4c-a23b03edbd01"
+      ],
+      "settings": {
+        "height": "adapt",
+        "color_scheme": "background-1"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "add_image_padding": false,
+        "show_image_outline": true,
+        "show_vendor": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16356421685b5cf995",
+    "product-recommendations"
+  ]
+}

@@ -1,0 +1,157 @@
+{{ 'component-scent.css' | asset_url | stylesheet_tag }}
+
+<div class="scent page-width color-scheme-{{ section.settings.color_scheme }}">
+  <div class="color-{{ section.settings.color_scheme }}">
+    <div class="scent__media scent__media--{{ section.settings.height }}">
+      <div
+        class="{% if section.settings.image != blank %}{% else %}scent__media--placeholder placeholder{% endif %}">
+      {%- if section.settings.image != blank -%}
+        <img
+          srcset="{%- if section.settings.image.width >= 165 -%}{{ section.settings.image | img_url: '165x' }} 165w,{%- endif -%}
+            {%- if section.settings.image.width >= 360 -%}{{ section.settings.image | img_url: '360x' }} 360w,{%- endif -%}
+            {%- if section.settings.image.width >= 535 -%}{{ section.settings.image | img_url: '535x' }} 535w,{%- endif -%}
+            {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | img_url: '750x' }} 750w,{%- endif -%}
+            {%- if section.settings.image.width >= 1070 -%}{{ section.settings.image | img_url: '1070x' }} 1070w,{%- endif -%}
+            {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}"
+          src="{{ section.settings.image | img_url: '1500x' }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+        >
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+      </div>
+    </div>
+      <div class="scent__content scent__content--{{ section.settings.height }}">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {%- when 'heading' -%}
+              <h2 class="scent__heading h1" {{ block.shopify_attributes }}>
+                {{ block.settings.heading | escape }}
+              </h2>
+            {%- when 'text' -%}
+              <div class="scent__text rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+          {%- endcase -%}
+        {%- endfor -%}
+
+        <img
+          class="secondary-image"
+          data-scroll
+          data-scroll-speed="1"
+          srcset="{%- if section.settings.image2.width >= 165 -%}{{ section.settings.image2 | img_url: '165x' }} 165w,{%- endif -%}
+            {%- if section.settings.image2.width >= 360 -%}{{ section.settings.image2 | img_url: '360x' }} 360w,{%- endif -%}
+            {%- if section.settings.image2.width >= 535 -%}{{ section.settings.image2 | img_url: '535x' }} 535w,{%- endif -%}
+            {%- if section.settings.image2.width >= 750 -%}{{ section.settings.image2 | img_url: '750x' }} 750w,{%- endif -%}
+            {%- if section.settings.image2.width >= 1070 -%}{{ section.settings.image2 | img_url: '1070x' }} 1070w,{%- endif -%}
+            {%- if section.settings.image2.width >= 1500 -%}{{ section.settings.image2 | img_url: '1500x' }} 1500w,{%- endif -%}"
+          src="{{ section.settings.image2 | img_url: '1500x' }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+          alt="{{ section.settings.image2.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image2.width }}"
+          height="{{ section.settings.image2.height }}"
+        >
+      </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Scent",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Secondary Image"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "adapt",
+      "label": "Adapt"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "istanbul",
+          "label": "Istanbul"
+        },
+        {
+          "value": "london",
+          "label": "London"
+        },
+        {
+          "value": "newdelhi",
+          "label": "New Delhi"
+        }
+      ],
+      "default": "istanbul",
+      "label": "Color scheme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Scent Name",
+          "label": "Heading"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scent",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

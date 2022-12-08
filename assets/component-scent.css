@@ -1,0 +1,187 @@
+.scent {
+  margin-top: 5rem;
+  background: transparent;
+  position: relative;
+  max-width: 1200px;
+}
+
+
+.scent.color-scheme-istanbul .scent__content{
+  background-color: var(--color-istanbul);
+  color: white;
+}
+.scent.color-scheme-istanbul .scent__content:after{
+  border-color: var(--color-istanbul);
+}
+.scent.color-scheme-istanbul .scent__heading{
+  color: white;
+}
+.scent.color-scheme-london .scent__content{
+  background-color: var(--color-london);
+}
+.scent.color-scheme-london .scent__content:after{
+  border-color: var(--color-london);
+}
+.scent.color-scheme-newdelhi .scent__content{
+  background-color: var(--color-newdelhi);
+}
+.scent.color-scheme-newdelhi .scent__content:after{
+  border-color: var(--color-newdelhi);
+}
+
+.shopify-section{
+  position: relative;
+}
+
+.scent:not(.color-scheme-background-1) {
+  margin-bottom: 10rem;
+}
+
+@media screen and (min-width: 750px) {
+  .scent:not(.color-scheme-background-1) {
+    margin-bottom: 5rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .scent {
+    margin-bottom: 5rem;
+  }
+}
+
+.scent .grid {
+  margin-left: 0;
+  margin-bottom: 0;
+  background: transparent;
+}
+
+.scent__grid {
+  overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .scent__grid--reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.scent__media{
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.scent__media img{
+  width: 100%;
+  height: auto;
+}
+
+.scent__media--placeholder {
+  background-color: rgba(var(--color-foreground), 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.scent__media--placeholder > svg {
+  position: absolute;
+  left: 50%;
+  max-width: 80rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  fill: currentColor;
+}
+
+
+.scent__content {
+  padding: 4rem 4rem 5rem;
+  z-index: 1;
+}
+
+@media screen and (min-width: 750px) {
+  .scent__content {
+    position: absolute;
+    width: 50%;
+    max-width: 500px;
+    bottom: 50px;
+    right: -20px;
+  }
+}
+
+
+.shopify-section:nth-child(2n+1) .scent__content {
+  left: -20px;
+  right: auto;
+}
+
+.scent__content:after{
+  content: '';
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  border: 2px solid red;
+  z-index: 0; 
+}
+
+@media screen and (max-width: 749px) {
+  .scent__content:after{
+    border-width: 0;
+  }  
+}
+
+.scent__content .secondary-image{
+  position: absolute;
+  top: -100px;
+  right: -50px;
+  max-width: 200px;
+  height: auto;
+  z-index: 1;
+}
+
+@media screen and (min-width: 750px) {
+  .scent__grid--reverse .scent__content {
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .scent__content {
+    padding: 6rem 7rem 7rem;
+  }
+}
+
+.scent__content > * + * {
+  margin-top: 2rem;
+}
+
+.scent__content > .scent__text:empty ~ a {
+  margin-top: 2rem;
+}
+
+.scent__content > :first-child:is(.scent__heading) {
+  margin-top: 0;
+}
+
+.scent__content :last-child:is(.scent__heading) {
+  margin-bottom: 0;
+}
+
+.scent__content .button + .scent__text {
+  margin-top: 2rem;
+}
+
+.scent__content .scent__text + .button {
+  margin-top: 3rem;
+}
+
+.scent__heading {
+  margin-bottom: 0;
+  font-weight: 200;
+  text-transform: capitalize;
+}
+
+.scent__text{
+  margin-top: 10px;
+  margin-bottom: 1rem;
+}

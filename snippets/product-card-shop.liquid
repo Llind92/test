@@ -1,0 +1,106 @@
+{% comment %}theme-check-disable TemplateLength{% endcomment %}
+{{ 'block-collection-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+<section class="product-card-shop page-width" data-scroll>
+  <div class="grid">
+  <div class="product grid__item" data-scroll>
+    <div class="product__media-wrapper">
+      <a href="{{ product.url | default: '#' }}" class="full-unstyled-link">
+      <img
+        srcset="{%- if product.media[0].width >= 165 -%}{{ product.media[0] | img_url: '165x' }} 165w,{%- endif -%}
+          {%- if product.media[0].width >= 360 -%}{{ product.media[0] | img_url: '360x' }} 360w,{%- endif -%}
+          {%- if product.media[0].width >= 533 -%}{{ product.media[0] | img_url: '533x' }} 533w,{%- endif -%}
+          {%- if product.media[0].width >= 720 -%}{{ product.media[0] | img_url: '720x' }} 720w,{%- endif -%}
+          {%- if product.media[0].width >= 940 -%}{{ product.media[0] | img_url: '940x' }} 940w,{%- endif -%}
+          {%- if product.media[0].width >= 1066 -%}{{ product.media[0] | img_url: '1066x' }} 1066w{%- endif -%}"
+        src="{{ product.media[0] | img_url: '533x' }}"
+        sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+        alt="{{ product.media[0].alt | escape }}"
+        loading="lazy"
+        class="motion-reduce"
+      width="{{ product.media[0].width }}"
+      height="{{ product.media[0].height }}"
+      >
+      </a>
+    </div>
+    <div class="product__info-wrapper">
+      <div id="ProductInfo-{{ section.id }}" class="product__info-container{% if section.settings.enable_sticky_info %} product__info-container--sticky{% endif %}">
+        {%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+        <h1 class="product__title" {{ block.shopify_attributes }}>
+          <a href="{{ product.url | default: '#' }}" class="full-unstyled-link">
+          {{ product.title | escape }}
+          </a>
+        </h1>
+
+        <div class="no-js-hidden" id="price-{{ section.id }}" {{ block.shopify_attributes }}>
+          {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
+        </div>
+        <div {{ block.shopify_attributes }}>
+          {%- form 'product', product, data-productid: product.id, id: 'product-form-installment', class: 'installment caption-large' -%}
+            <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ product.selected_or_first_available_variant.id }}">
+            {{ form | payment_terms }}
+          {%- endform -%}
+        </div>
+      </div>
+
+        <a href="{{ product.url | default: '#' }}" class="button button--full-width">Shop Now</a>
+    </div>
+  </div>
+  {% comment %} {%- render 'cart-notification' -%} {% endcomment %}
+
+  <div class="grid__item">
+  <div class="product-background">
+    {%- for media in product.media -%}
+      {%- if media.alt == 'background-1' -%}
+        <img
+          class="product-background-1"
+          data-scroll
+          data-scroll-speed=".9"
+          srcset="{%- if media.preview_image.width >= 550 -%}{{ media.preview_image | img_url: '550x' }} 550w,{%- endif -%}
+                  {%- if media.preview_image.width >= 1100 -%}{{ media.preview_image | img_url: '1100x' }} 1100w,{%- endif -%}
+                  {%- if media.preview_image.width >= 1680 -%}{{ media.preview_image | img_url: '1680x' }} 1680w,{%- endif -%}
+                  {%- if media.preview_image.width >= 1920 -%}{{ media.preview_image | img_url: '1920x' }} 1920w,{%- endif -%}
+                  {%- if media.preview_image.width >= 2048 -%}{{ media.preview_image | img_url: '2048x' }} 2048w,{%- endif -%}
+                  {%- if media.preview_image.width >= 4096 -%}{{ media.preview_image | img_url: '4096x' }} 4096w{%- endif -%}"
+          sizes="(min-width: 750px) calc(100vw - 12rem), 100vw"
+          src="{{ media.preview_image | img_url: '750x' }}"
+          alt="{{ media.alt | escape }}"
+          loading="lazy"
+          width="1100"
+          height="{{ 1100 | divided_by: media.preview_image.aspect_ratio | ceil }}"
+          data-media-id="{{ media.id }}"
+        >
+        {%- endif -%}
+        {%- if media.alt == 'background-2' -%}
+          <img
+            class="product-background-2"
+            data-scroll
+            data-scroll-speed="3"
+            srcset="{%- if media.preview_image.width >= 550 -%}{{ media.preview_image | img_url: '550x' }} 550w,{%- endif -%}
+                    {%- if media.preview_image.width >= 1100 -%}{{ media.preview_image | img_url: '1100x' }} 1100w,{%- endif -%}
+                    {%- if media.preview_image.width >= 1680 -%}{{ media.preview_image | img_url: '1680x' }} 1680w,{%- endif -%}
+                    {%- if media.preview_image.width >= 1920 -%}{{ media.preview_image | img_url: '1920x' }} 1920w,{%- endif -%}
+                    {%- if media.preview_image.width >= 2048 -%}{{ media.preview_image | img_url: '2048x' }} 2048w,{%- endif -%}
+                    {%- if media.preview_image.width >= 4096 -%}{{ media.preview_image | img_url: '4096x' }} 4096w{%- endif -%}"
+            sizes="(min-width: 750px) calc(100vw - 12rem), 100vw"
+            src="{{ media.preview_image | img_url: '750x' }}"
+            alt="{{ media.alt | escape }}"
+            loading="lazy"
+            width="1100"
+            height="{{ 1100 | divided_by: media.preview_image.aspect_ratio | ceil }}"
+            data-media-id="{{ media.id }}"
+          >
+          {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+</section>

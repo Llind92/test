@@ -1,0 +1,182 @@
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Immerse yourself in natural skincare"
+          }
+        },
+        "1c177f7a-dc1e-4486-9a98-706a55f54db8": {
+          "type": "text",
+          "settings": {
+            "text": "We make products designed with your real beauty routine in mind. Find skincare, deodorant body care, and more, all painstakingly perfected to be worthy of your bathroom shelf."
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Discover the Collection",
+            "button_link_1": "shopify:\/\/collections\/shop",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "1c177f7a-dc1e-4486-9a98-706a55f54db8",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/DSC00940-Enhanced_1.jpg",
+        "desktop_text_box_position": "flex-start",
+        "color_scheme": "inverse",
+        "stack_images_on_mobile": true,
+        "adapt_height_first_image": false
+      }
+    },
+    "image_text": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Nourishing Body Care"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Learn the secret to caring for your skin with our nourishing products, designed to give you soft, radiant skin.<\/p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Now",
+            "button_link": "shopify:\/\/collections\/shop"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/landing-bodycare.jpg",
+        "show_border": true,
+        "height": "adapt",
+        "color_scheme": "background-1",
+        "layout": "text_first"
+      }
+    },
+    "163364166408328aa9": {
+      "type": "image-with-text",
+      "blocks": {
+        "163364166408328aa9-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Discover Our Inspiration"
+          }
+        },
+        "163364166408328aa9-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We create the products you tell us you wish existed, by immersing ourselves in the cultures of the world and using tried and tested ingredients in use for thousands of years.<\/p>"
+          }
+        },
+        "163364166408328aa9-2": {
+          "type": "button",
+          "settings": {
+            "button_label": "Explore",
+            "button_link": "shopify:\/\/pages\/our-philosophy"
+          }
+        }
+      },
+      "block_order": [
+        "163364166408328aa9-0",
+        "163364166408328aa9-1",
+        "163364166408328aa9-2"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/pexels-oziel-gomez-7529416-resized_c0729c37-92e3-487a-9dd5-097adf4c21be.jpg",
+        "show_border": true,
+        "height": "adapt",
+        "color_scheme": "background-1",
+        "layout": "image_first"
+      }
+    },
+    "163364185250b6e359": {
+      "type": "multicolumn",
+      "blocks": {
+        "163364185250b6e359-0": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/hands-lathered-in-hand-cream-against-beige-background.jpg",
+            "title": "Organic",
+            "text": "<p>We source only from sustainable and organic growers. Because we would never put anything in our products that we wouldn't want in our bodies.<\/p>"
+          }
+        },
+        "163364185250b6e359-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pexels-skylar-kang-6045480.jpg",
+            "title": "Vegan",
+            "text": "<p>All ingredients we use are vegan certified and done so with care to the environment, making sure to only use what the earth can give back.<\/p>"
+          }
+        },
+        "163364185250b6e359-2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pexels-rfstudio-3621234.jpg",
+            "title": "Sustainable",
+            "text": "<p>Our products are free from nasty and harmful petrochemicals, SLS and all artificial preservatives, never tested on animals or harmful to our planet.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "163364185250b6e359-0",
+        "163364185250b6e359-1",
+        "163364185250b6e359-2"
+      ],
+      "settings": {
+        "title": "Clean Ingredients",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "column_alignment": "left",
+        "background_style": "secondary",
+        "button_label": "",
+        "button_link": "",
+        "swipe_on_mobile": true
+      }
+    },
+    "1633641983847bac41": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Shop the Collection",
+        "collection": "shop",
+        "products_to_show": 4,
+        "show_view_all": false,
+        "swipe_on_mobile": true,
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "add_image_padding": false,
+        "show_image_outline": false,
+        "show_vendor": false
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "image_text",
+    "163364166408328aa9",
+    "163364185250b6e359",
+    "1633641983847bac41"
+  ]
+}

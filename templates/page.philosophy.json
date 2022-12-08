@@ -1,0 +1,152 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+      }
+    },
+    "1635267658463bed29": {
+      "type": "image-with-text",
+      "blocks": {
+        "4e3cc974-78d4-44b3-8710-c7c3b4492be7": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Philosophy"
+          }
+        },
+        "1635267658463bed29-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We’re SLKÉ, pronounced [sɪlk]. We make products designed with your real beauty routine in mind. Here you’ll find skincare, deodorant body care, and more, all painstakingly perfected to be worthy of your bathroom shelf.<br\/><br\/>SLKÉ was founded on the belief that beauty isn’t built in a boardroom—it happens when you’re a part of the process. We got started with the idea that beauty, real beauty is a devotion to people using the products they love; that is good for their bodies.<br\/><br\/>By creating the products you tell us you wish existed, by immersing ourselves in the cultures of the world and using tried and tested ingredients in use for thousands of years. This is the source of our inspiration and motivation.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "4e3cc974-78d4-44b3-8710-c7c3b4492be7",
+        "1635267658463bed29-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/philosophy-hero.jpg",
+        "show_border": false,
+        "height": "adapt",
+        "color_scheme": "background-1",
+        "layout": "text_first"
+      }
+    },
+    "16352678876692d1a3": {
+      "type": "rich-text",
+      "blocks": {
+        "16352678876692d1a3-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Scents",
+            "heading_size": "h1"
+          }
+        },
+        "16352678876692d1a3-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Travel with us to our favourite places, and discover the scents of our world.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "16352678876692d1a3-0",
+        "16352678876692d1a3-1"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "full_width": true
+      }
+    },
+    "16352688370b435366": {
+      "type": "scent-block",
+      "blocks": {
+        "16352688370b435366-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "London"
+          }
+        },
+        "16352688370b435366-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our London Inspired Scent. English Lavender and Coastal Oak, coming together in this clean scent with woodsy undertones, paired with potent English Sea Salt to gently exfoliate your skin while promoting blood flow and collagen production.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "16352688370b435366-0",
+        "16352688370b435366-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/philosophy-london.jpg",
+        "image2": "shopify:\/\/shop_images\/lavender.png",
+        "height": "adapt",
+        "color_scheme": "london"
+      }
+    },
+    "1635268816378b30a0": {
+      "type": "scent-block",
+      "blocks": {
+        "1635268816378b30a0-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Istanbul"
+          }
+        },
+        "1635268816378b30a0-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Inspired by the vibrancy of Istanbul; lively and floral. This scent blends together the aromas of the Mediterranean. Warm Rose, Desert Bloom and notes of Turkish coffee create this evocative scent. <\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "1635268816378b30a0-0",
+        "1635268816378b30a0-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/philosophy-istanbul.jpg",
+        "image2": "shopify:\/\/shop_images\/philosophy-newdelhi-ingredient2.png",
+        "height": "adapt",
+        "color_scheme": "istanbul"
+      }
+    },
+    "16352694067d06892d": {
+      "type": "scent-block",
+      "blocks": {
+        "16352694067d06892d-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "New Delhi"
+          }
+        },
+        "16352694067d06892d-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our muse is the greatest olfactory culture the world has ever known, Incredible India, specifically the heart and soul of this beating country, New Delhi, the inspiration behind our scent.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "16352694067d06892d-0",
+        "16352694067d06892d-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/philosophy-newdelhi_750x_copy_1.jpg",
+        "image2": "shopify:\/\/shop_images\/philosophy-newdelhi-ingredient1.png",
+        "height": "adapt",
+        "color_scheme": "newdelhi"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1635267658463bed29",
+    "16352678876692d1a3",
+    "16352688370b435366",
+    "1635268816378b30a0",
+    "16352694067d06892d"
+  ]
+}

@@ -1,0 +1,10 @@
+.product-recommendations {
+  display: block;
+  min-height: 500px;
+}
+
+.product-recommendations__heading {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 3rem;
+}
